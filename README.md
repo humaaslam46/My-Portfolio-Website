@@ -60,8 +60,6 @@ portfolio/
 ├── images/
 │   └── Huma.jpeg       # Profile photo
 │
-├── HUMA_ASLAM_Resume.pdf   # Downloadable resume
-│
 ├── README.md
 ├── LICENSE
 └── .gitignore
