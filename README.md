@@ -162,4 +162,6 @@ Feel free to use this as inspiration — but please don't copy it wholesale and 
 ---
 
 <div align="center">
+  Built with ♥ by <strong>Huma Aslam</strong> · Lahore, Pakistan · 2025
+
 ⚠️ This portfolio is a personal project. Copying, cloning, or making changes without explicit permission is prohibited.</div>
