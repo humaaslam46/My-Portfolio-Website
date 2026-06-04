@@ -147,7 +147,6 @@ Live at **[huma-aslam.site](https://huma-aslam.site)**. To deploy your own copy:
 | 📧 Email | [humaaslam755@gmail.com](mailto:humaaslam755@gmail.com) |
 | 💼 LinkedIn | [linkedin.com/in/huma-aslam01](https://www.linkedin.com/in/huma-aslam01/) |
 | 🐙 GitHub | [github.com/humaaslam46](https://github.com/humaaslam46) |
-| 💬 WhatsApp | [+92 320 682 6891](https://wa.me/923206826891) |
 | 🌐 Website | [huma-aslam.site](https://huma-aslam.site) |
 
 ---
