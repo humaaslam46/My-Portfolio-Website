@@ -1,937 +1,836 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Huma Aslam — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huma Aslam — Software Engineer</title>
+  <link rel="icon" href="images/Gemini_Generated_Image_7lqe7m7lqe7m7lqe.png" type="image/x-icon">
 
-:root {
-  --cream:    #F5F0E8;
-  --cream-2:  #EDE8DF;
-  --ink:      #1A1410;
-  --ink-2:    #12100D;
-  --gold:     #B8860B;
-  --gold-lt:  #D4A017;
-  --muted:    #6B5E4E;
-  --term-bg:  #141010;
-  --card-bg:  #1C1712;
-  --border:   #2A2018;
-}
+  <!-- Tailwind CSS (Generated) -->
+  <link href="styles.css" rel="stylesheet">
 
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-}
+  <!-- Google Fonts: Clash Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700;800;900&display=swap"
+    rel="stylesheet">
 
-/* ═══════════════════════════════════════
-   PRELOADER
-═══════════════════════════════════════ */
-#preloader {
-  position: fixed; inset: 0;
-  background: var(--ink);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 24px;
-  z-index: 9999;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-@keyframes catBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-.cat-svg { width: 70px; height: 70px; animation: catBob 1.6s ease-in-out infinite; }
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("QE3liNQKctjfoqDa2");
+    })();
+  </script>
 
-.pill-loader {
-  background: #2A2420; border: 1.5px solid #3A3028;
-  border-radius: 999px; padding: 9px 26px;
-  display: flex; align-items: center; gap: 10px;
-}
-.pill-text {
-  font-family: 'Fira Code', monospace; font-size: 12px;
-  color: #8A7A6A; letter-spacing: 0.08em; text-transform: uppercase;
-}
-.dots span {
-  display: inline-block; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--gold); margin: 0 2px;
-  animation: dotPulse 1.2s ease-in-out infinite;
-}
-.dots span:nth-child(2) { animation-delay: .2s; }
-.dots span:nth-child(3) { animation-delay: .4s; }
-@keyframes dotPulse {
-  0%,80%,100% { opacity: .2; transform: scale(.8); }
-  40%         { opacity: 1;  transform: scale(1); }
-}
-
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 60px;
-  background: var(--cream); border-bottom: 1px solid #E0D8CA;
-  opacity: 0; transform: translateY(-20px);
-  transition: opacity .6s 3.8s ease, transform .6s 3.8s ease;
-}
-nav.visible { opacity: 1; transform: translateY(0); }
-.logo {
-  font-family: 'Fira Code', monospace; font-size: 17px;
-  font-weight: 500; color: var(--ink); text-decoration: none;
-}
-.logo span { color: var(--gold); }
-.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-.nav-links a {
-  font-size: 13.5px; color: var(--muted);
-  text-decoration: none; transition: color .2s;
-}
-.nav-links a:hover { color: var(--ink); }
-.nav-cta {
-  border: 1.5px solid var(--ink); border-radius: 999px;
-  padding: 7px 20px; color: var(--ink) !important;
-}
-.nav-cta:hover { background: var(--ink); color: var(--cream) !important; }
-
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-#hero {
-  min-height: 100vh; display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center; padding: 110px 60px 70px; gap: 50px;
-  opacity: 0; transform: translateY(30px);
-  transition: opacity .8s 4s ease, transform .8s 4s ease;
-}
-#hero.visible { opacity: 1; transform: translateY(0); }
-
-.hero-left { display: flex; flex-direction: column; gap: 20px; }
-
-.hero-eyebrow {
-  font-family: 'Fira Code', monospace; font-size: 12px;
-  color: var(--gold); letter-spacing: .06em;
-}
-
-.hero-heading {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 4vw, 54px);
-  font-weight: 900; line-height: 1.08; color: var(--ink);
-}
-.hero-heading .cursor {
-  display: inline-block; width: 3px; height: .85em;
-  background: var(--gold); margin-left: 3px; vertical-align: middle;
-  animation: blink 1s step-end infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-.role-badge {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--ink); color: var(--cream); border-radius: 999px;
-  padding: 7px 18px; font-size: 12.5px; font-weight: 500; width: fit-content;
-}
-.role-dot {
-  width: 6px; height: 6px; background: var(--gold);
-  border-radius: 50%; flex-shrink: 0;
-  animation: dotPulse 1.8s ease-in-out infinite;
-}
-
-.hero-desc { font-size: 14.5px; line-height: 1.75; color: var(--muted); max-width: 500px; }
-.hero-desc a { color: var(--gold-lt); text-decoration: underline; text-underline-offset: 3px; }
-
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
-.btn-primary {
-  background: var(--ink); color: var(--cream); padding: 11px 24px;
-  border-radius: 999px; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  transition: background .2s, transform .15s;
-  display: inline-flex; align-items: center; gap: 7px;
-}
-.btn-primary:hover { background: #2E2418; transform: translateY(-1px); }
-.btn-ghost {
-  border: 1.5px solid var(--ink); color: var(--ink); padding: 11px 24px;
-  border-radius: 999px; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  transition: background .2s, transform .15s;
-  display: inline-flex; align-items: center; gap: 7px;
-}
-.btn-ghost:hover { background: var(--ink); color: var(--cream); transform: translateY(-1px); }
-
-.hero-right { display: flex; flex-direction: column; align-items: flex-end; position: relative; }
-
-.terminal-window {
-  background: var(--term-bg); border-radius: 12px; border: 1px solid #2E2820;
-  width: 100%; max-width: 360px;
-  overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.22);
-}
-.terminal-bar {
-  background: #1E1A14; padding: 9px 14px;
-  display: flex; align-items: center; gap: 7px; border-bottom: 1px solid #2E2820;
-}
-.t-dot { width: 10px; height: 10px; border-radius: 50%; }
-.t-dot.red   { background: #FF5F56; }
-.t-dot.amber { background: #FFBD2E; }
-.t-dot.green { background: #27C93F; }
-.t-title { margin: 0 auto; font-family: 'Fira Code', monospace; font-size: 10px; color: #5A5040; }
-
-.terminal-body {
-  padding: 16px 18px 20px;
-  font-family: 'Fira Code', monospace;
-  font-size: 11.5px; line-height: 1.85; color: #C8B89A;
-}
-.t-comment { color: #4A4038; } .t-key    { color: #D4A017; } .t-str    { color: #7EC8A4; }
-.t-punc    { color: #5A5040; } .t-fn     { color: #E08080; } .t-method { color: #9B8FDE; }
-.t-bool    { color: #D4A017; } .t-arr    { color: #C8B89A; }
-
-.skill-pill {
-  position: absolute; background: var(--cream); border: 1px solid #D0C8B8;
-  border-radius: 999px; padding: 5px 13px; font-size: 11px; font-weight: 500;
-  color: var(--ink); display: flex; align-items: center; gap: 5px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.07);
-}
-.skill-pill::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
-.pill-python { top: -14px; left: -20px; animation: floatPill 4s ease-in-out infinite; }
-.pill-react  { bottom: 20px; right: -14px; animation: floatPill 4s ease-in-out 1.2s infinite; }
-.pill-ml     { top: 45%; left: -40px; animation: floatPill 4s ease-in-out 2.4s infinite; }
-@keyframes floatPill { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-
-/* ═══════════════════════════════════════
-   SHARED SECTION LABELS
-═══════════════════════════════════════ */
-.section-label {
-  font-family: 'Fira Code', monospace; font-size: 11px; color: var(--gold);
-  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 3.5vw, 44px);
-  font-weight: 900; line-height: 1.1;
-}
-.section-title em { font-style: normal; color: var(--gold-lt); }
-
-/* ═══════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════ */
-#about { padding: 100px 60px; background: #F0EBE0; }
-
-#about .section-title { color: var(--ink); margin-bottom: 50px; }
-
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1.5fr;
-  gap: 60px; align-items: start;
-}
-
-.about-left { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
-
-.photo-wrap { position: relative; width: 100%; }
-.photo-wrap img {
-  width: 100%; max-width: 340px; border-radius: 16px;
-  object-fit: cover; aspect-ratio: 3/4;
-  border: 2px solid #D8D0C0; display: block;
-}
-.photo-badge {
-  position: absolute; bottom: -14px; left: 20px;
-  background: var(--ink); color: var(--cream);
-  border-radius: 999px; padding: 8px 18px;
-  font-size: 12px; font-weight: 500; letter-spacing: .03em;
-  border: 2px solid var(--cream);
-}
-.photo-badge span { color: var(--gold); }
-
-.socials-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-.social-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--ink); color: var(--cream);
-  padding: 9px 16px; border-radius: 999px; text-decoration: none;
-  font-size: 12.5px; font-weight: 500; transition: background .2s, transform .15s;
-}
-.social-link:hover { background: #2E2418; transform: translateY(-2px); }
-.social-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
-.social-link.outline {
-  background: transparent; color: var(--ink); border: 1.5px solid var(--ink);
-}
-.social-link.outline:hover { background: var(--ink); color: var(--cream); }
-
-.about-right { display: flex; flex-direction: column; gap: 32px; }
-
-.about-bio { font-size: 15px; line-height: 1.85; color: var(--muted); }
-.about-bio strong { color: var(--ink); font-weight: 600; }
-.about-bio p + p { margin-top: 16px; }
-
-.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.skill-tag {
-  background: #E8E0D0; color: var(--muted); border-radius: 6px;
-  padding: 5px 13px; font-size: 12px; font-weight: 500; letter-spacing: .02em;
-  transition: background .2s, color .2s; cursor: default;
-}
-.skill-tag:hover { background: var(--ink); color: var(--cream); }
-
-.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-.stat-card {
-  background: var(--cream); border-radius: 12px; padding: 18px 20px;
-  border: 1px solid #D8D0C0; text-align: center;
-}
-.stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: var(--ink); }
-.stat-num sup { font-size: 16px; color: var(--gold); }
-.stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; letter-spacing: .03em; }
-
-.certs-box { background: var(--ink); border-radius: 16px; padding: 28px; color: var(--cream); }
-.certs-heading {
-  font-family: 'Fira Code', monospace; font-size: 11px; color: var(--gold);
-  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px;
-}
-.cert-list { display: flex; flex-direction: column; gap: 12px; }
-.cert-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding-bottom: 12px; border-bottom: 1px solid #2E2820;
-}
-.cert-item:last-child { border-bottom: none; padding-bottom: 0; }
-.cert-icon {
-  width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700;
-}
-.cert-icon.google    { background: #2A1E08; color: var(--gold-lt); }
-.cert-icon.microsoft { background: #1A1E10; color: #8AC878; }
-.cert-icon.alison    { background: #1E1408; color: #C8A060; }
-.cert-info { flex: 1; }
-.cert-name { font-size: 13px; font-weight: 500; color: var(--cream); line-height: 1.35; }
-.cert-name a { color: var(--gold-lt); text-decoration: underline; text-underline-offset: 2px; }
-.cert-meta { font-size: 11px; color: #5A4E3E; margin-top: 3px; font-family: 'Fira Code', monospace; }
-
-/* ═══════════════════════════════════════
-   SERVICES
-═══════════════════════════════════════ */
-#services { padding: 100px 60px; background: var(--ink-2, #12100D); }
-
-#services .section-title { color: var(--cream); }
-
-.section-header {
-  display: flex; align-items: flex-end;
-  justify-content: space-between; flex-wrap: wrap;
-  gap: 20px; margin-bottom: 54px;
-}
-.section-sub {
-  font-size: 13.5px; color: var(--muted);
-  max-width: 340px; line-height: 1.7; text-align: right;
-}
-
-.services-grid {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 18px;
-}
-
-/* card */
-.svc-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px; padding: 30px 26px 52px;
-  display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-  transition: border-color .35s, transform .35s, background .35s, box-shadow .35s;
-}
-/* gold glow on hover */
-.svc-card::after {
-  content: ''; position: absolute; inset: 0; border-radius: 16px;
-  background: radial-gradient(ellipse at 20% 10%, rgba(184,134,11,.08) 0%, transparent 65%);
-  opacity: 0; transition: opacity .4s; pointer-events: none;
-}
-.svc-card:hover::after { opacity: 1; }
-.svc-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-5px);
-  background: #1F1A12;
-  box-shadow: 0 22px 55px rgba(0,0,0,.5), 0 0 0 1px rgba(184,134,11,.2);
-}
-.svc-card.featured { border-color: rgba(184,134,11,.3); }
-
-/* icon */
-.svc-icon {
-  width: 46px; height: 46px; border-radius: 11px;
-  background: #231E15; border: 1px solid #2E2618;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-  transition: background .35s, border-color .35s;
-}
-.svc-card:hover .svc-icon { background: #2A2215; border-color: rgba(184,134,11,.4); }
-.svc-icon svg {
-  width: 20px; height: 20px;
-  stroke: var(--gold); fill: none;
-  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
-  transition: stroke .3s;
-}
-.svc-card:hover .svc-icon svg { stroke: var(--gold-lt); }
-
-/* title */
-.svc-title {
-  font-size: 15.5px; font-weight: 600;
-  color: #D0C8B8; margin-bottom: 10px; line-height: 1.3;
-  transition: color .3s;
-}
-.svc-card:hover .svc-title { color: var(--cream); }
-
-/* desc */
-.svc-desc {
-  font-size: 13px; color: #4A4035;
-  line-height: 1.75; margin-bottom: 20px; flex: 1;
-  transition: color .3s;
-}
-.svc-card:hover .svc-desc { color: #5A5040; }
-
-/* list */
-.svc-list {
-  list-style: none; display: flex;
-  flex-direction: column; gap: 6px;
-  padding-top: 16px; border-top: 1px solid #2A2018;
-  transition: border-color .3s;
-}
-.svc-card:hover .svc-list { border-color: #3A2E18; }
-.svc-list li {
-  font-size: 12px; color: #3A3025;
-  display: flex; align-items: center; gap: 8px;
-  transition: color .3s;
-}
-.svc-card:hover .svc-list li { color: #5A5040; }
-.svc-list li::before {
-  content: '→'; color: #4A3820;
-  font-size: 10px; flex-shrink: 0; transition: color .3s;
-}
-.svc-card:hover .svc-list li::before { color: var(--gold); }
-
-/* corner arrow */
-.svc-arrow {
-  position: absolute; bottom: 22px; right: 22px;
-  width: 30px; height: 30px; border-radius: 50%;
-  background: #231E15; border: 1px solid #2E2618;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: translateY(8px) scale(.9);
-  transition: opacity .3s, transform .3s, background .3s;
-}
-.svc-card:hover .svc-arrow {
-  opacity: 1; transform: translateY(0) scale(1);
-  background: #2A2215; border-color: rgba(184,134,11,.5);
-}
-.svc-arrow svg {
-  width: 13px; height: 13px;
-  stroke: var(--gold-lt); fill: none;
-  stroke-width: 2; stroke-linecap: round;
-}
-
-/* wide card */
-.svc-card.wide { grid-column: span 2; }
-.svc-card.wide .svc-list {
-  flex-direction: row; flex-wrap: wrap; column-gap: 28px;
-}
-
-/* CTA */
-.services-cta {
-  margin-top: 48px; display: flex;
-  align-items: center; justify-content: center;
-  gap: 20px; flex-wrap: wrap;
-  padding-top: 40px; border-top: 1px solid var(--border);
-}
-.cta-line { font-size: 13.5px; color: var(--muted); }
-.cta-btn {
-  background: var(--gold); color: var(--ink);
-  padding: 11px 26px; border-radius: 999px;
-  font-size: 13px; font-weight: 600; text-decoration: none;
-  letter-spacing: .02em;
-  transition: background .2s, transform .15s;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.cta-btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-@media (max-width: 1000px) {
-  .services-grid { grid-template-columns: repeat(2,1fr); }
-  .svc-card.wide { grid-column: span 2; }
-}
-@media (max-width: 900px) {
-  nav { padding: 16px 20px; }
-  .nav-links { display: none; }
-  #hero { grid-template-columns: 1fr; padding: 95px 20px 55px; }
-  .hero-right { align-items: center; }
-  .terminal-window { max-width: 100%; }
-  .skill-pill { display: none; }
-  #about { padding: 70px 20px; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .photo-wrap img { max-width: 260px; }
-  #services { padding: 70px 20px; }
-  .section-header { flex-direction: column; align-items: flex-start; }
-  .section-sub { text-align: left; }
-}
-@media (max-width: 640px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .svc-card.wide { grid-column: span 1; }
-  .svc-card.wide .svc-list { flex-direction: column; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cat-svg, .dots span, .role-dot, .skill-pill, .cursor { animation: none; }
-}
-</style>
+  <!-- Custom Styles -->
+  <link href="extra.css" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- ══════════════ PRELOADER ══════════════ -->
-<div id="preloader">
-  <svg class="cat-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <polygon points="14,34 22,14 30,34" fill="#1E1A14" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/>
-    <polygon points="50,34 58,14 66,34" fill="#1E1A14" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"/>
-    <polygon points="17,32 22,18 27,32" fill="#2E2018"/>
-    <polygon points="53,32 58,18 63,32" fill="#2E2018"/>
-    <ellipse cx="40" cy="46" rx="26" ry="22" fill="#1E1A14" stroke="#B8860B" stroke-width="1.5"/>
-    <ellipse cx="30" cy="44" rx="5" ry="5.5" fill="#F5F0E8"/>
-    <ellipse cx="50" cy="44" rx="5" ry="5.5" fill="#F5F0E8"/>
-    <circle cx="31" cy="45" r="3" fill="#141010"/>
-    <circle cx="51" cy="45" r="3" fill="#141010"/>
-    <circle cx="32.5" cy="43.5" r="1" fill="white"/>
-    <circle cx="52.5" cy="43.5" r="1" fill="white"/>
-    <ellipse cx="40" cy="52" rx="2.5" ry="1.5" fill="#B8860B"/>
-    <path d="M37 54 Q40 57 43 54" stroke="#B8860B" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <line x1="14" y1="50" x2="28" y2="52" stroke="#3A3020" stroke-width="1" stroke-linecap="round"/>
-    <line x1="14" y1="54" x2="28" y2="54" stroke="#3A3020" stroke-width="1" stroke-linecap="round"/>
-    <line x1="52" y1="52" x2="66" y2="50" stroke="#3A3020" stroke-width="1" stroke-linecap="round"/>
-    <line x1="52" y1="54" x2="66" y2="54" stroke="#3A3020" stroke-width="1" stroke-linecap="round"/>
-  </svg>
-  <div class="pill-loader">
-    <span class="pill-text">loading</span>
-    <span class="dots"><span></span><span></span><span></span></span>
-  </div>
-</div>
+  <!-- ========= CUSTOM CURSOR ========= -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
 
-<!-- ══════════════ NAV ══════════════ -->
-<nav id="navbar">
-  <a href="#hero" class="logo">&lt;<span>Huma</span>/&gt;</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
-  </ul>
-</nav>
-
-<!-- ══════════════ HERO ══════════════ -->
-<section id="hero">
-  <div class="hero-left">
-    <span class="hero-eyebrow">&gt; const engineer = "Huma Aslam";</span>
-    <h1 class="hero-heading">
-      <span id="typed-text">Building intelligent</span><span class="cursor"></span>
-    </h1>
-    <div class="role-badge">
-      <span class="role-dot"></span>
-      <span id="role-cycle">AI Engineer &amp; Frontend Developer</span>
-    </div>
-    <p class="hero-desc">
-      Final-year Software Engineering student building applied AI systems end-to-end,
-      including a <a href="#projects">retrieval-augmented chatbot</a> deployed via FastAPI.
-      Shipping full-stack web apps and automation on n8n &amp; React.js.
-    </p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">View My Work &nbsp;&#8594;</a>
-      <a href="#contact"  class="btn-ghost">Let's Talk</a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="skill-pill pill-python">Python</div>
-    <div class="skill-pill pill-react">React.js</div>
-    <div class="skill-pill pill-ml">ML / NLP</div>
-    <div class="terminal-window">
-      <div class="terminal-bar">
-        <span class="t-dot red"></span>
-        <span class="t-dot amber"></span>
-        <span class="t-dot green"></span>
-        <span class="t-title">huma.py — python</span>
+  <!-- ========= NAVBAR ========= -->
+  <nav id="navbar" class="ha-nav">
+    <div class="ha-nav-inner">
+      <div class="ha-logo" onclick="scrollToSection('home')">
+        <span class="ha-logo-text">Huma<span class="ha-logo-accent">.</span></span>
       </div>
-      <div class="terminal-body" id="terminal-content"></div>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════════ ABOUT ══════════════ -->
-<section id="about">
-  <p class="section-label">About Me</p>
-  <h2 class="section-title">The person behind the code</h2>
+      <div class="ha-nav-links">
+        <button onclick="scrollToSection('home')" class="ha-nav-btn">Home</button>
+        <button onclick="scrollToSection('about')" class="ha-nav-btn">About</button>
+        <button onclick="scrollToSection('services')" class="ha-nav-btn">Services</button>
+        <button onclick="scrollToSection('projects')" class="ha-nav-btn">Projects</button>
+        <button onclick="scrollToSection('pricing')" class="ha-nav-btn">Pricing</button>
+        <button onclick="scrollToSection('reviews')" class="ha-nav-btn">Reviews</button>
+        <button onclick="scrollToSection('contact')" class="ha-nav-cta">Let's Talk</button>
+      </div>
 
-  <div class="about-grid">
-    <div class="about-left">
-      <div class="photo-wrap">
-        <img src="images/Huma.jpeg" alt="Huma Aslam — Software Engineer"/>
-        <span class="photo-badge">Available for work <span>✦</span></span>
-      </div>
-      <div class="socials-row">
-        <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" rel="noopener" class="social-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/humaaslam46" target="_blank" rel="noopener" class="social-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
-          GitHub
-        </a>
-        <a href="mailto:humaaslam755@gmail.com" class="social-link outline">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          Email
-        </a>
-        <a href="https://wa.me/+923206826891" target="_blank" rel="noopener" class="social-link outline">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.28-.14-1.65-.81-1.9-.9-.26-.1-.44-.14-.63.14s-.72.9-.88 1.09c-.16.18-.32.2-.6.07a7.5 7.5 0 0 1-2.2-1.36 8.23 8.23 0 0 1-1.53-1.9c-.16-.28 0-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.1-.18.05-.34-.02-.48s-.63-1.52-.86-2.08c-.23-.55-.46-.47-.63-.48h-.54c-.18 0-.48.07-.73.34C8.12 7.87 7.4 8.56 7.4 10s1.04 2.82 1.18 3.02c.14.18 2.04 3.12 4.94 4.37.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.55-.08 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.18-.54-.32zM12.05 21.8a9.71 9.71 0 0 1-4.95-1.36l-.36-.21-3.7.97.99-3.6-.23-.37A9.72 9.72 0 0 1 2.3 12 9.75 9.75 0 0 1 12.05 2.2 9.75 9.75 0 0 1 21.8 12a9.75 9.75 0 0 1-9.75 9.8zm0-21.8C5.93 0 1 4.93 1 11.05c0 1.95.5 3.86 1.47 5.55L.06 24l7.55-1.98a11 11 0 0 0 4.44.93C18.12 22.95 23 18.02 23 11.9 23 5.77 18.12 0 12.05 0z"/></svg>
-          WhatsApp
-        </a>
-      </div>
+      <button id="mobile-menu-btn" class="ha-mobile-btn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
 
-    <div class="about-right">
-      <div class="about-bio">
-        <p>I'm a <strong>final-year Software Engineering student</strong> at Lahore Garrison University,
-          specialising in <strong>Artificial Intelligence</strong>, <strong>Machine Learning</strong>, and
-          <strong>full-stack web development</strong>. I don't just enjoy learning AI — I enjoy
-          engineering intelligent systems that people can actually use.</p>
-        <p>Through internships at <strong>Flyrank AI</strong> and <strong>SafeX Solutions</strong>, I've
-          worked on real business problems using LangChain, FastAPI, TensorFlow, and PyTorch — from
-          building <strong>RAG chatbots</strong> to deploying <strong>ensemble ML models</strong> in
-          production. On the frontend, I craft clean, responsive interfaces in React.js and automate
-          workflows end-to-end with <strong>n8n AI agents</strong>.</p>
-        <p>I believe the best engineers never stop learning. My goal is to build software that is
-          <strong>scalable, impactful, and genuinely useful</strong> — and to grow continuously as an
-          AI Engineer while doing it.</p>
+    <div id="mobile-menu" class="ha-mobile-menu hidden">
+      <button onclick="scrollToSection('home')" class="ha-mobile-link">Home</button>
+      <button onclick="scrollToSection('about')" class="ha-mobile-link">About</button>
+      <button onclick="scrollToSection('services')" class="ha-mobile-link">Services</button>
+      <button onclick="scrollToSection('projects')" class="ha-mobile-link">Projects</button>
+      <button onclick="scrollToSection('pricing')" class="ha-mobile-link">Pricing</button>
+      <button onclick="scrollToSection('reviews')" class="ha-mobile-link">Reviews</button>
+      <button onclick="scrollToSection('contact')" class="ha-mobile-link">Contact</button>
+    </div>
+  </nav>
+
+  <!-- ========= HERO SECTION ========= -->
+  <section id="home" class="ha-hero">
+
+    <!-- Floating dots canvas — only moving element -->
+    <canvas id="hero-canvas" class="ha-hero-canvas"></canvas>
+
+    <!-- Centered content -->
+    <div class="ha-hero-content ha-hero-centered">
+
+      <p class="ha-title-greeting animate-on-load">Hi, I'm</p>
+
+      <h1 class="ha-title-name animate-on-load">Huma Aslam</h1>
+
+      <div class="ha-title-role animate-on-load">
+        <span class="ha-typewriter" id="typewriter"></span><span class="ha-cursor-blink">|</span>
       </div>
 
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span><span class="skill-tag">React.js</span>
-        <span class="skill-tag">Scikit-learn</span><span class="skill-tag">LangChain</span>
-        <span class="skill-tag">FastAPI</span><span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">n8n</span><span class="skill-tag">Figma</span>
-        <span class="skill-tag">Node.js</span><span class="skill-tag">TF-IDF / NLP</span>
-        <span class="skill-tag">Pandas</span><span class="skill-tag">PyTorch</span>
+      <p class="ha-hero-desc animate-on-load">
+        Software Engineering student building intelligent systems —
+        from ML classifiers to full-stack web apps.
+        Turning data into insight, ideas into products.
+      </p>
+
+      <div class="ha-hero-actions animate-on-load">
+        <button onclick="scrollToSection('projects')" class="ha-btn-primary">
+          <span>View My Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
 
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-num">20<sup>+</sup></div>
-          <div class="stat-lbl">Projects shipped</div>
+      <div class="ha-hero-stats animate-on-load">
+        <div class="ha-stat">
+          <span class="ha-stat-num">20+</span>
+          <span class="ha-stat-label">Projects</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">5<sup>+</sup></div>
-          <div class="stat-lbl">Work experiences</div>
+        <div class="ha-stat-divider"></div>
+        <div class="ha-stat">
+          <span class="ha-stat-num">5+</span>
+          <span class="ha-stat-label">Work Experiences</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">7<sup>+</sup></div>
-          <div class="stat-lbl">Certifications</div>
+        <div class="ha-stat-divider"></div>
+        <div class="ha-stat">
+          <span class="ha-stat-num">2+</span>
+          <span class="ha-stat-label">Years Coding & Development</span>
         </div>
       </div>
 
-      <div class="certs-box">
-        <p class="certs-heading">// Certifications</p>
-        <div class="cert-list">
-          <div class="cert-item">
-            <div class="cert-icon google">G</div>
-            <div class="cert-info">
-              <div class="cert-name">IT Automation with Python</div>
-              <div class="cert-meta">Google · Coursera &nbsp;·&nbsp; 2026</div>
+    </div>
+
+    <div class="ha-scroll-hint" onclick="scrollToSection('about')">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ========= ABOUT SECTION ========= -->
+  <section id="about" class="ha-about">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">About Me</div>
+      <h2 class="ha-section-title animate-on-scroll">The Person Behind the Code</h2>
+
+      <div class="ha-about-grid">
+        <!-- Left: Photo -->
+        <div class="ha-about-photo-wrap animate-on-scroll">
+          <div class="ha-photo-frame">
+            <div class="ha-photo-border"></div>
+            <div class="ha-photo-inner">
+              <img src="images/Huma.jpeg" alt="Huma Aslam" class="ha-photo">
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon google">G</div>
-            <div class="cert-info">
-              <div class="cert-name">AI Professional Certificate</div>
-              <div class="cert-meta">Google · Coursera &nbsp;·&nbsp; 2026</div>
+          <!-- Skills badges -->
+          <div class="ha-skill-pills">
+            <span class="ha-pill">Python</span>
+            <span class="ha-pill">React.js</span>
+            <span class="ha-pill">Scikit-learn</span>
+            <span class="ha-pill">Figma</span>
+            <span class="ha-pill">n8n</span>
+            <span class="ha-pill">Node.js</span>
+            <span class="ha-pill">TF-IDF / NLP</span>
+            <span class="ha-pill">Pandas</span>
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div class="ha-about-text animate-on-scroll">
+        <p class="ha-about-lead">
+  I don't just enjoy learning <strong>AI</strong>—I enjoy engineering intelligent systems that people can actually use.
+</p>
+
+<p>
+  I'm a <strong>final-year Software Engineering student</strong> specializing in
+  <strong>Artificial Intelligence</strong>, <strong>Machine Learning</strong>, and
+  <strong>Software Engineering</strong>, with practical experience building
+  <strong>production-style AI applications</strong>,
+  <strong>RAG systems</strong>, <strong>LLM-powered assistants</strong>, and
+  <strong>automation workflows</strong>. Through internships at
+  <strong>Flyrank AI</strong> and <strong>SafeX Solutions</strong>, I've worked on
+  solving real business problems using modern AI technologies while strengthening
+  my software engineering fundamentals.
+</p>
+
+<p>
+  My work combines <strong>Python</strong>, <strong>Machine Learning</strong>,
+  <strong>LangChain</strong>, <strong>FastAPI</strong>,
+  <strong>TensorFlow</strong>, <strong>PyTorch</strong>,
+  <strong>FAISS</strong>, and <strong>Generative AI</strong> to create scalable,
+  user-focused applications. Whether it's deploying a
+  <strong>RAG chatbot</strong>, developing an
+  <strong>ensemble machine learning model</strong>, or designing
+  <strong>AI automation workflows</strong>, I enjoy transforming complex ideas
+  into practical solutions.
+</p>
+
+<p>
+  I believe the best engineers never stop learning. That's why I continuously
+  invest in expanding my expertise through industry certifications, research,
+  and hands-on development.  My goal is to build intelligent software that is
+  scalable, impactful, and genuinely useful while continuously growing as an
+  <strong>AI Engineer</strong> and <strong>Software Engineer</strong>.
+</p>
+
+          <div class="ha-about-certs">
+            <div class="ha-cert"><i class="fas fa-certificate"></i> Google UX Design — Coursera (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> AI for Beginners — HP Life (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> WordPress — Alison (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> Graphic Design — NS Training (2024)</div>
+          </div>
+
+          <div class="ha-about-links">
+            <a href="https://github.com/humaaslam46" target="_blank" class="ha-about-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" class="ha-about-link">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="http://huma-aslam.site" target="_blank" class="ha-about-link">
+              <i class="fas fa-globe"></i> Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SERVICES SECTION ========= -->
+  <section id="services" class="ha-services">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">What I Do</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Services I Offer</h2>
+      <p class="ha-section-sub animate-on-scroll">From intelligent ML systems to pixel-perfect web apps — here's how I
+        can add value to your project.</p>
+
+      <div class="ha-services-grid">
+
+        <!-- Service 1: AI / ML -->
+        <div class="ha-service-card animate-on-scroll" data-delay="100">
+          <div class="ha-service-icon-wrap ha-icon-ai">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Building intelligent systems: classifiers, predictive models, NLP pipelines, and data-driven solutions
+            using Python, Scikit-learn, Pandas, and NumPy.</p>
+          <ul class="ha-service-tags">
+            <li>Supervised / Unsupervised Learning</li>
+            <li>NLP & Text Classification</li>
+            <li>EDA & Feature Engineering</li>
+            <li>Model Evaluation (F1, ROC-AUC)</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 2: Web Development -->
+        <div class="ha-service-card animate-on-scroll" data-delay="200">
+          <div class="ha-service-icon-wrap ha-icon-web">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Crafting responsive, high-performance web apps using React.js, HTML5, CSS3, JavaScript, and Node.js — from
+            landing pages to full SaaS products.</p>
+          <ul class="ha-service-tags">
+            <li>React.js & JavaScript</li>
+            <li>Node.js & MongoDB</li>
+            <li>REST API Integration</li>
+            <li>Performance Optimization</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 3: UI/UX & Web Design -->
+        <div class="ha-service-card animate-on-scroll" data-delay="300">
+          <div class="ha-service-icon-wrap ha-icon-design">
+            <i class="fas fa-pen-nib"></i>
+          </div>
+          <h3>UI/UX & Web Design</h3>
+          <p>Designing intuitive, visually compelling interfaces in Figma — wireframes, prototypes, and design systems
+            that prioritize user experience at every step.</p>
+          <ul class="ha-service-tags">
+            <li>Figma Prototyping</li>
+            <li>Wireframing & Flows</li>
+            <li>Responsive Design Systems</li>
+            <li>Logo & Brand Graphics</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 4: Technical Writing -->
+        <div class="ha-service-card animate-on-scroll" data-delay="400">
+          <div class="ha-service-icon-wrap ha-icon-writing">
+            <i class="fas fa-pen-fancy"></i>
+          </div>
+          <h3>Technical & Academic Writing</h3>
+          <p>Producing polished research papers, review articles, technical documentation, and academic assignments —
+            with proper APA/IEEE formatting and verified citations.</p>
+          <ul class="ha-service-tags">
+            <li>Research & Review Papers</li>
+            <li>APA / IEEE Formatting</li>
+            <li>Technical Documentation</li>
+            <li>Academic Ghostwriting</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 5: AI Automation -->
+        <div class="ha-service-card animate-on-scroll" data-delay="500">
+          <div class="ha-service-icon-wrap ha-icon-auto">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI Automation & Chatbots</h3>
+          <p>Building smart workflow automation with n8n — AI email agents, chatbots, Google Sheets integration, and
+            conditional logic pipelines that save hours.</p>
+          <ul class="ha-service-tags">
+            <li>n8n Workflow Automation</li>
+            <li>AI Chatbot Development</li>
+            <li>Prompt Engineering</li>
+            <li>Gmail & Sheets Integration</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 6: Data & Statistics -->
+        <div class="ha-service-card animate-on-scroll" data-delay="600">
+          <div class="ha-service-icon-wrap ha-icon-data">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Data Analysis & Visualization</h3>
+          <p>Transforming raw data into clear insights — statistical modeling, probability distributions, regression
+            analysis, and visual dashboards using Python & Matplotlib.</p>
+          <ul class="ha-service-tags">
+            <li>Statistical Modelling</li>
+            <li>Correlation & Regression</li>
+            <li>Matplotlib Visualizations</li>
+            <li>Survey Data Analysis</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PROJECTS SECTION ========= -->
+  <section id="projects" class="ha-projects">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">My Work</div>
+      <h2 class="ha-section-title animate-on-scroll">Featured Projects</h2>
+      <p class="ha-section-sub ha-sub-dark animate-on-scroll">Real projects. Real code. Click any card to view on
+        GitHub.</p>
+
+      <!-- Filter Tabs -->
+      <div class="ha-filter-tabs animate-on-scroll">
+        <button class="ha-filter-btn active" data-filter="all">All</button>
+        <button class="ha-filter-btn" data-filter="ai">AI / ML</button>
+        <button class="ha-filter-btn" data-filter="web">Web Dev</button>
+      </div>
+
+      <div class="ha-projects-grid">
+
+        <!-- Project 1: AI Requirement Classifier -->
+        <a href="https://github.com/humaaslam46/AI-REQUIREMENT-CLASSIFIER" target="_blank"
+          class="ha-project-card animate-on-scroll" data-category="ai" data-delay="100">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-tags"></i></div>
+            <div class="ha-project-type">AI / NLP</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>AI Requirement Classifier</h3>
+            <p>NLP-based classification system that categorizes software requirements (FR, NFR, US, PE, etc.) using
+              TF-IDF vectorization + Multinomial Naive Bayes. Deployed as an interactive Streamlit app.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>Scikit-learn</span><span>TF-IDF</span><span>Streamlit</span>
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon google">G</div>
-            <div class="cert-info">
-              <div class="cert-name">Data Analytics Professional</div>
-              <div class="cert-meta">Google · Coursera &nbsp;·&nbsp; 2026</div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 2: Business Nexus -->
+        <a href="https://github.com/humaaslam46/Business-Nexus" target="_blank"
+          class="ha-project-card animate-on-scroll" data-category="web" data-delay="200">
+          <div class="ha-project-header ha-proj-web">
+            <div class="ha-project-icon"><i class="fas fa-network-wired"></i></div>
+            <div class="ha-project-type">Web App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>Business Nexus</h3>
+            <p>A responsive business networking platform connecting entrepreneurs, freelancers, and investors. Built
+              with React.js — includes business profiles, collaboration feed, and opportunity discovery. Deployed on
+              Vercel.</p>
+            <div class="ha-project-stack">
+              <span>React.js</span><span>JavaScript</span><span>CSS3</span><span>Vercel</span>
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon google">G</div>
-            <div class="cert-info">
-              <div class="cert-name">AI Essentials</div>
-              <div class="cert-meta">Google &nbsp;·&nbsp; 2025</div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 3: WeatherSync -->
+        <a href="https://github.com/humaaslam46/WeatherSync-Weather-Forecast-App" target="_blank"
+          class="ha-project-card animate-on-scroll" data-category="web" data-delay="300">
+          <div class="ha-project-header ha-proj-weather">
+            <div class="ha-project-icon"><i class="fas fa-cloud-sun"></i></div>
+            <div class="ha-project-type">Web App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>WeatherSync Dashboard</h3>
+            <p>Real-time weather dashboard with location-based forecasts, external API integration, and interactive
+              visualizations. Responsive UI deployed on Netlify.</p>
+            <div class="ha-project-stack">
+              <span>HTML / CSS</span><span>JavaScript</span><span>Weather API</span><span>Netlify</span>
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon google">G</div>
-            <div class="cert-info">
-              <div class="cert-name">UX Design Professional Certificate</div>
-              <div class="cert-meta">Google · Coursera &nbsp;·&nbsp; 2025</div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 4: Taskflow -->
+        <a href="https://github.com/humaaslam46/Taskflow" target="_blank" class="ha-project-card animate-on-scroll"
+          data-category="web" data-delay="400">
+          <div class="ha-project-header ha-proj-task">
+            <div class="ha-project-icon"><i class="fas fa-tasks"></i></div>
+            <div class="ha-project-type">Productivity App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>Taskflow</h3>
+            <p>A clean, intuitive task management app with drag-and-drop boards, priority tags, and team collaboration
+              features — designed for efficient productivity workflows.</p>
+            <div class="ha-project-stack">
+              <span>JavaScript</span><span>HTML / CSS</span><span>Local Storage</span>
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon alison">A</div>
-            <div class="cert-info">
-              <div class="cert-name">WordPress Master Class</div>
-              <div class="cert-meta">Alison &nbsp;·&nbsp; 2025</div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 5: ECG Deep Learning -->
+        <a href="https://github.com/humaaslam46/ECG-Heartbeat-Classification-Deep-Learning" target="_blank"
+          class="ha-project-card ha-project-featured animate-on-scroll" data-category="ai" data-delay="500">
+          <div class="ha-project-header ha-proj-ecg">
+            <div class="ha-project-icon"><i class="fas fa-heartbeat"></i></div>
+            <div class="ha-project-type">Deep Learning</div>
+            <div class="ha-featured-badge">Featured</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>ECG Heartbeat Classification</h3>
+            <p>Deep learning model for classifying ECG heartbeat signals into cardiac arrhythmia categories. Applies
+              convolutional neural networks for medical time-series analysis — a real-world healthcare AI use case.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>Deep Learning</span><span>NumPy</span><span>Pandas</span>
             </div>
           </div>
-          <div class="cert-item">
-            <div class="cert-icon microsoft">M</div>
-            <div class="cert-info">
-              <div class="cert-name">
-                <a href="https://learn.microsoft.com/en-us/training/modules/foundations-agentic-ai/" target="_blank" rel="noopener">
-                  Foundations of Agentic AI in GitHub ↗
-                </a>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 6: AI Email Automation -->
+        <div class="ha-project-card animate-on-scroll" data-category="ai" data-delay="600" style="cursor:default;">
+          <div class="ha-project-header ha-proj-email">
+            <div class="ha-project-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <div class="ha-project-type">AI Automation</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>AI Email Automation Agent</h3>
+            <p>Automated email workflow using n8n — dynamic recipient management via Google Sheets, conditional logic,
+              custom JavaScript, Gmail integration, and execution tracking with status logging.</p>
+            <div class="ha-project-stack">
+              <span>n8n</span><span>Google Sheets</span><span>Gmail API</span><span>JavaScript</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fas fa-lock"></i> Private Project</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PRICING SECTION ========= -->
+  <section id="pricing" class="ha-pricing">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">Rates</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Simple, Transparent Pricing</h2>
+      <p class="ha-section-sub animate-on-scroll">Flat-rate packages for common project types. Custom quotes available
+        for complex work — just reach out.</p>
+
+      <div class="ha-pricing-grid">
+
+        <!-- Starter -->
+        <div class="ha-price-card animate-on-scroll" data-delay="100">
+          <div class="ha-price-top">
+            <div class="ha-price-icon"><i class="fas fa-seedling"></i></div>
+            <h3>Starter</h3>
+            <p class="ha-price-desc">Small web presence or research task</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">80</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Single-page responsive website</li>
+            <li><i class="fas fa-check"></i> Basic UI/UX design in Figma</li>
+            <li><i class="fas fa-check"></i> Research paper or report (up to 3000 words)</li>
+            <li><i class="fas fa-check"></i> APA/IEEE formatted references</li>
+            <li><i class="fas fa-check"></i> 1 revision round</li>
+            <li class="ha-price-no"><i class="fas fa-times"></i> No backend/API</li>
+            <li class="ha-price-no"><i class="fas fa-times"></i> No ML/AI models</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-outline">Get Started</button>
+        </div>
+
+        <!-- Professional (Popular) -->
+        <div class="ha-price-card ha-price-popular animate-on-scroll" data-delay="200">
+          <div class="ha-popular-badge">Most Popular</div>
+          <div class="ha-price-top">
+            <div class="ha-price-icon ha-icon-popular"><i class="fas fa-rocket"></i></div>
+            <h3>Professional</h3>
+            <p class="ha-price-desc">Multi-page web app or ML project</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">200</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Multi-page React.js web app</li>
+            <li><i class="fas fa-check"></i> Full Figma UI/UX prototype</li>
+            <li><i class="fas fa-check"></i> ML model (classification/prediction)</li>
+            <li><i class="fas fa-check"></i> REST API integration</li>
+            <li><i class="fas fa-check"></i> Technical research paper (5000+ words)</li>
+            <li><i class="fas fa-check"></i> 3 revision rounds</li>
+            <li><i class="fas fa-check"></i> Deployment (Vercel / Netlify)</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-solid">Get Started</button>
+        </div>
+
+        <!-- Advanced -->
+        <div class="ha-price-card animate-on-scroll" data-delay="300">
+          <div class="ha-price-top">
+            <div class="ha-price-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>Advanced</h3>
+            <p class="ha-price-desc">Full-stack product or AI automation system</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">400</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Full-stack web application</li>
+            <li><i class="fas fa-check"></i> Custom ML/AI pipeline</li>
+            <li><i class="fas fa-check"></i> n8n workflow automation</li>
+            <li><i class="fas fa-check"></i> AI chatbot integration</li>
+            <li><i class="fas fa-check"></i> Data analysis & visualization report</li>
+            <li><i class="fas fa-check"></i> Unlimited revisions</li>
+            <li><i class="fas fa-check"></i> 2 weeks post-delivery support</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-outline">Get Started</button>
+        </div>
+
+      </div>
+
+      <p class="ha-pricing-note animate-on-scroll">
+        <i class="fas fa-info-circle"></i>
+        All prices are starting rates. Final quote depends on project scope and complexity. Academic writing rates are
+        per-word / per-page.
+        <button onclick="scrollToSection('contact')" class="ha-inline-link">Request a custom quote →</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========= REVIEWS SECTION ========= -->
+  <section id="reviews" class="ha-reviews">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">Testimonials</div>
+      <h2 class="ha-section-title animate-on-scroll">What Collaborators Say</h2>
+      <p class="ha-section-sub ha-sub-dark animate-on-scroll">Feedback from teammates, supervisors, and academic
+        collaborators.</p>
+
+      <div class="ha-reviews-grid">
+
+        <div class="ha-review-card animate-on-scroll" data-delay="100">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma led our statistics group project with exceptional organization. She designed
+            the entire survey structure, distributed tasks clearly, and kept the team on track. The quality of her data
+            analysis was impressive."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-1">FA</div>
+            <div>
+              <strong>Fatima A.</strong>
+              <span>Team Member — Probability & Statistics Project, LGU</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="200">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"The academic writing Huma delivered for my enterprise information security course
+            was thorough, properly cited, and structured exactly as required. She understood complex SIEM concepts and
+            articulated them clearly."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-2">MK</div>
+            <div>
+              <strong>M. Kovarik</strong>
+              <span>Research Writing Client — Prague University of Economics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="300">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Working with Huma on the React components during our internship was smooth. She
+            writes clean, readable code and communicates blockers early. The UI she built was both functional and
+            visually polished."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-3">SR</div>
+            <div>
+              <strong>S. Raza</strong>
+              <span>Senior Developer — DevelopersHub Corporation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="400">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma's AI Requirement Classifier project showed real depth — not just applying
+            algorithms, but understanding the problem space. Her documentation and Streamlit deployment were
+            professional-grade for a student project."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-4">AH</div>
+            <div>
+              <strong>A. Hassan</strong>
+              <span>Academic Supervisor — Software Engineering Dept., LGU</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="500">
+          <div class="ha-review-stars">★★★★☆</div>
+          <p class="ha-review-text">"The n8n automation workflow Huma built handled edge cases I hadn't even considered.
+            The conditional logic, loops, and Gmail integration worked flawlessly from day one. Would hire again."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-5">ZN</div>
+            <div>
+              <strong>Z. Noor</strong>
+              <span>Freelance Client — Email Automation Project</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="600">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma is one of those rare developers who cares equally about the user experience
+            and the technical execution. The Business Nexus platform she built had a level of design attention that's
+            rare in student projects."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-6">IA</div>
+            <div>
+              <strong>I. Ahmed</strong>
+              <span>Mentor — Elevvo Pathways Internship</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= CONTACT SECTION ========= -->
+  <section id="contact" class="ha-contact">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">Get In Touch</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Let's Build Something Together</h2>
+
+      <div class="ha-contact-grid">
+
+        <!-- Left: Info -->
+        <div class="ha-contact-info animate-on-scroll">
+          <p class="ha-contact-tagline">Whether it's a web app, an ML model, a research paper, or just a quick question
+            — I'm open to it.</p>
+
+          <div class="ha-contact-items">
+            <a href="mailto:humaaslam755@gmail.com" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span>Email</span>
+                <strong>humaaslam755@gmail.com</strong>
               </div>
-              <div class="cert-meta">Microsoft Learn &nbsp;·&nbsp; 2025</div>
+            </a>
+            <a href="https://wa.me/+923206826891" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <span>WhatsApp</span>
+                <strong>+92 320 682 6891</strong>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <span>LinkedIn</span>
+                <strong>huma-aslam01</strong>
+              </div>
+            </a>
+            <a href="https://github.com/humaaslam46" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <span>GitHub</span>
+                <strong>humaaslam46</strong>
+              </div>
+            </a>
+          </div>
+
+          <div class="ha-contact-availability">
+            <span class="ha-avail-dot"></span>
+            Currently available for freelance work & internship opportunities
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="ha-contact-form-wrap animate-on-scroll">
+          <form id="contact-form" class="ha-contact-form">
+            <div class="ha-form-row">
+              <div class="ha-form-group">
+                <label>Your Name</label>
+                <input type="text" name="from_name" required placeholder="e.g. Ahmed Khan">
+              </div>
+              <div class="ha-form-group">
+                <label>Email Address</label>
+                <input type="email" name="from_email" required placeholder="your@email.com">
+              </div>
+            </div>
+            <div class="ha-form-group">
+              <label>Subject</label>
+              <input type="text" name="subject" required placeholder="e.g. Freelance Web Project">
+            </div>
+            <div class="ha-form-group">
+              <label>Message</label>
+              <textarea name="message" rows="5" required
+                placeholder="Tell me about your project, timeline, and budget..."></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="ha-form-submit">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+            <p id="form-status" class="ha-form-status hidden"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FOOTER ========= -->
+  <footer class="ha-footer">
+    <div class="ha-footer-top">
+      <div class="ha-container">
+        <div class="ha-footer-grid">
+
+          <div class="ha-footer-brand">
+            <div class="ha-footer-logo">Huma<span>.</span></div>
+            <p>Software Engineering student, AI/ML enthusiast, and freelance developer & writer based in Lahore,
+              Pakistan. Building the future one commit at a time.</p>
+            <div class="ha-footer-socials">
+              <a href="https://github.com/humaaslam46" target="_blank" aria-label="GitHub"><i
+                  class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" aria-label="LinkedIn"><i
+                  class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/hehehuma.exe" target="_blank" aria-label="Instagram"><i
+                  class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/+923206826891" target="_blank" aria-label="WhatsApp"><i
+                  class="fab fa-whatsapp"></i></a>
+              <a href="https://youtube.com/@soulfuelreminders" target="_blank" aria-label="YouTube"><i
+                  class="fab fa-youtube"></i></a>
+              <a href="mailto:humaaslam755@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
           </div>
+
+          <div class="ha-footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><button onclick="scrollToSection('home')">Home</button></li>
+              <li><button onclick="scrollToSection('about')">About</button></li>
+              <li><button onclick="scrollToSection('services')">Services</button></li>
+              <li><button onclick="scrollToSection('projects')">Projects</button></li>
+              <li><button onclick="scrollToSection('pricing')">Pricing</button></li>
+              <li><button onclick="scrollToSection('contact')">Contact</button></li>
+            </ul>
+          </div>
+
+          <div class="ha-footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><span>AI & Machine Learning</span></li>
+              <li><span>Web Development</span></li>
+              <li><span>UI/UX & Web Design</span></li>
+              <li><span>Technical Writing</span></li>
+              <li><span>AI Automation</span></li>
+              <li><span>Data Analysis</span></li>
+            </ul>
+          </div>
+
+          <div class="ha-footer-col">
+            <h4>Currently</h4>
+            <ul>
+              <li><span>Lahore, Pakistan</span></li>
+              <li><span>BS SE — 6th Semester</span></li>
+              <li><span>Open to freelance</span></li>
+              <li><span>huma-aslam.site</span></li>
+              <li><span>Lahore Garrison University</span></li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══════════════ SERVICES ══════════════ -->
-<section id="services">
-  <p class="section-label">What I Do</p>
-  <div class="section-header">
-    <h2 class="section-title">
-      Services I offer &amp;<br/><em>problems I solve</em>
-    </h2>
-    <p class="section-sub">
-      End-to-end engineering across the full product stack —
-      from intelligent AI pipelines to pixel-perfect interfaces.
-    </p>
-  </div>
-
-  <div class="services-grid">
-
-    <!-- 1 -->
-    <div class="svc-card featured">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M9.5 2a4.5 4.5 0 0 1 4.48 4.05A4.5 4.5 0 0 1 17 10.5a4.49 4.49 0 0 1-2.5 4V17a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-2.5A4.5 4.5 0 0 1 7 10.5 4.5 4.5 0 0 1 9.5 2z"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/></svg>
+    <div class="ha-footer-bottom">
+      <div class="ha-container">
+        <p>© 2026 Huma Aslam. All rights reserved.</p>
+        <p>Terms of Service | Privacy Policy</p>
       </div>
-      <h3 class="svc-title">AI & Machine Learning Solutions</h3>
-      <p class="svc-desc">End-to-end intelligent systems — from data pipelines and model training to production deployment. Classifiers, NLP engines, RAG chatbots, and LLM integrations built for real business impact.</p>
-      <ul class="svc-list">
-        <li>Supervised & Unsupervised Learning</li>
-        <li>NLP, TF-IDF & Text Classification</li>
-        <li>RAG Systems & LLM Integration</li>
-        <li>Model Evaluation & Deployment</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
+  </footer>
 
-    <!-- 2 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3 class="svc-title">Full-Stack Software Development</h3>
-      <p class="svc-desc">Complete web applications built from frontend to backend — React.js interfaces, Node.js APIs, database design, and deployment pipelines. Clean architecture, scalable code, shipped on time.</p>
-      <ul class="svc-list">
-        <li>React.js, JavaScript & Node.js</li>
-        <li>REST API Design & Integration</li>
-        <li>MongoDB & Database Architecture</li>
-        <li>Vercel, Netlify & FastAPI Deployment</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
+  <!-- Back to top -->
+  <button id="back-to-top" class="ha-back-top" onclick="scrollToSection('home')" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
 
-    <!-- 3 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/><circle cx="9" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
-      </div>
-      <h3 class="svc-title">AI Automation & Chatbot Development</h3>
-      <p class="svc-desc">Intelligent n8n workflows and AI chatbots that automate repetitive processes — email campaigns, lead management, CRM syncing, and customer conversations — running 24/7 without manual input.</p>
-      <ul class="svc-list">
-        <li>n8n Workflow & Agent Automation</li>
-        <li>AI Chatbot Design & Deployment</li>
-        <li>Gmail, Sheets & CRM Integration</li>
-        <li>Prompt Engineering & LLM Chaining</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-    <!-- 4 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
-      <h3 class="svc-title">Web Development & Landing Pages</h3>
-      <p class="svc-desc">High-performance, conversion-focused websites built with modern HTML, CSS, and JavaScript. Fast, mobile-first, and optimised for both search and usability from launch day.</p>
-      <ul class="svc-list">
-        <li>Responsive HTML5, CSS3 & JavaScript</li>
-        <li>Landing Pages & Marketing Sites</li>
-        <li>Shopify & E-Commerce Integration</li>
-        <li>Performance & SEO Optimisation</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-    <!-- 5 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="8" height="8" rx="2"/><rect x="14" y="3" width="8" height="8" rx="2"/><rect x="2" y="13" width="8" height="8" rx="2"/><circle cx="18" cy="17" r="4"/></svg>
-      </div>
-      <h3 class="svc-title">UX Design & Prototyping</h3>
-      <p class="svc-desc">User-centred design that bridges strategy and execution — from research-backed wireframes to pixel-perfect Figma prototypes and complete design systems ready for handoff to development.</p>
-      <ul class="svc-list">
-        <li>Figma Wireframing & Prototyping</li>
-        <li>Design Systems & Component Libraries</li>
-        <li>User Flow & Information Architecture</li>
-        <li>Branding & Visual Identity</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-    <!-- 6 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-      </div>
-      <h3 class="svc-title">Data Analytics & Visualisation</h3>
-      <p class="svc-desc">Transforming raw data into clear, decision-ready insight — statistical modelling, regression analysis, probability distributions, and publication-quality visual dashboards built in Python.</p>
-      <ul class="svc-list">
-        <li>Python, Pandas & NumPy Pipelines</li>
-        <li>Statistical Modelling & Regression</li>
-        <li>Matplotlib & Seaborn Dashboards</li>
-        <li>EDA & Feature Engineering Reports</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-    <!-- 7 -->
-    <div class="svc-card">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      </div>
-      <h3 class="svc-title">Content & Creative Writing</h3>
-      <p class="svc-desc">Audience-first content that builds authority and converts — blog posts, website copy, LinkedIn articles, product descriptions, and brand storytelling written with clarity and personality.</p>
-      <ul class="svc-list">
-        <li>Blog Posts & Long-Form Articles</li>
-        <li>Website & Landing Page Copywriting</li>
-        <li>LinkedIn & Social Media Content</li>
-        <li>Product Descriptions & Brand Voice</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-    <!-- 8 — wide -->
-    <div class="svc-card wide">
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      </div>
-      <h3 class="svc-title">Technical & Academic Research Writing</h3>
-      <p class="svc-desc">Peer-level research papers, systematic literature reviews, and technical documentation across Software Engineering, Economics, and Data Science — properly formatted in APA/IEEE with verified citations.</p>
-      <ul class="svc-list">
-        <li>Research Papers & Review Articles</li>
-        <li>APA / IEEE Formatting & Citation</li>
-        <li>Technical Documentation & Reports</li>
-        <li>Academic Editing & Proofreading</li>
-      </ul>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </div>
-
-  </div>
-
-  <div class="services-cta">
-    <span class="cta-line">Have a project in mind? Let's scope it out.</span>
-    <a href="#contact" class="cta-btn">Get a Free Quote &nbsp;&#8594;</a>
-  </div>
-</section>
-
-<!-- ══════════════ SCRIPTS ══════════════ -->
-<script>
-/* preloader */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
-    document.getElementById('navbar').classList.add('visible');
-    document.getElementById('hero').classList.add('visible');
-    startHeroTyping();
-    startTerminalType();
-  }, 3400);
-});
-
-/* hero heading cycle */
-const heroLines = [
-  'Building intelligent\nsoftware',
-  'Crafting AI-powered\nexperiences',
-  'Shipping end-to-end\nML systems',
-];
-let heroIdx = 0;
-function startHeroTyping() { cycleHero(); }
-function cycleHero() {
-  const el = document.getElementById('typed-text');
-  const chars = heroLines[heroIdx % heroLines.length].split('');
-  el.innerHTML = '';
-  let i = 0;
-  function typeChar() {
-    if (i < chars.length) {
-      el.innerHTML += chars[i] === '\n' ? '<br/>' : chars[i];
-      i++; setTimeout(typeChar, 48);
-    } else { setTimeout(eraseChar, 2200); }
-  }
-  function eraseChar() {
-    if (el.innerText.length > 0) {
-      el.innerHTML = el.innerHTML.replace(/<br\/>$/, '').slice(0, -1);
-      setTimeout(eraseChar, 28);
-    } else { heroIdx++; setTimeout(cycleHero, 400); }
-  }
-  typeChar();
-}
-
-/* role badge cycle */
-const roles = [
-  'AI Engineer &amp; Frontend Developer',
-  'ML Enthusiast &amp; NLP Builder',
-  'Automation &amp; n8n Architect',
-  'React.js &amp; Python Developer',
-];
-let roleIdx = 0;
-setInterval(() => {
-  roleIdx = (roleIdx + 1) % roles.length;
-  const el = document.getElementById('role-cycle');
-  el.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s';
-  setTimeout(() => {
-    el.innerHTML = roles[roleIdx];
-    el.style.cssText = 'opacity:1;transform:translateY(0);transition:opacity .3s,transform .3s';
-  }, 320);
-}, 3200);
-
-/* terminal typewriter */
-const termCode = [
-  {type:'comment', text:'# huma_aslam.py'},
-  {type:'blank'},
-  {type:'line',    tokens:[{c:'t-key',t:'class '},{c:'t-fn',t:'HumaAslam'},{c:'t-punc',t:':'}]},
-  {type:'indent',  tokens:[{c:'t-method',t:'def '},{c:'t-fn',t:'__init__'},{c:'t-punc',t:'(self):'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.name     '},{c:'t-punc',t:'= '},{c:'t-str',t:'"Huma Aslam"'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.degree   '},{c:'t-punc',t:'= '},{c:'t-str',t:'"BS Software Eng."'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.year     '},{c:'t-punc',t:'= '},{c:'t-str',t:'"Final Year"'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.stack    '},{c:'t-punc',t:'= '},{c:'t-arr',t:'["Python","React","n8n"]'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.focus    '},{c:'t-punc',t:'= '},{c:'t-arr',t:'["AI","NLP","LLMs"]'}]},
-  {type:'indent2', tokens:[{c:'t-key',t:'self.open_to  '},{c:'t-punc',t:'= '},{c:'t-bool',t:'True'},{c:'t-comment',t:'  # roles'}]},
-  {type:'blank'},
-  {type:'indent',  tokens:[{c:'t-method',t:'def '},{c:'t-fn',t:'say_hi'},{c:'t-punc',t:'(self):'}]},
-  {type:'indent2', tokens:[{c:'t-method',t:'return '},{c:'t-str',t:'"Let\'s build ✨"'}]},
-];
-function startTerminalType() {
-  const c = document.getElementById('terminal-content');
-  c.innerHTML = ''; let li = 0;
-  function nextLine() { if (li < termCode.length) setTimeout(() => renderLine(termCode[li++]), 80); }
-  function renderLine(l) {
-    const div = document.createElement('div');
-    if (l.type === 'blank') { div.innerHTML = '&nbsp;'; c.appendChild(div); nextLine(); return; }
-    if (l.type === 'comment') { div.innerHTML = `<span class="t-comment">${l.text}</span>`; c.appendChild(div); nextLine(); return; }
-    const pad = l.type==='indent2' ? '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'
-              : l.type==='indent'  ? '\u00a0\u00a0\u00a0\u00a0' : '';
-    div.innerHTML = pad; c.appendChild(div);
-    let ti = 0;
-    function addToken() {
-      if (ti >= l.tokens.length) { nextLine(); return; }
-      const tk = l.tokens[ti++];
-      const s = document.createElement('span'); s.className = tk.c; s.textContent = tk.t;
-      div.appendChild(s); setTimeout(addToken, 38);
-    }
-    addToken();
-  }
-  nextLine();
-}
-</script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
+
 </html>
