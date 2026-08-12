@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌐 Huma Aslam — Portfolio Website
+# 🌐 Huma Aslam Portfolio Website
 
 **[huma-aslam.site](https://huma-aslam.site)** · Software Engineer · AI/ML Enthusiast · Lahore, Pakistan
 
