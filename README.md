@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌐 Huma Aslam Portfolio Website
+#  Huma Aslam Portfolio Website
 
 **[huma-aslam.site](https://huma-aslam.site)** · Software Engineer · AI/ML Enthusiast · Lahore, Pakistan
 
@@ -14,7 +14,7 @@
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Animated Hero** — typewriter effect cycling through roles, floating particle canvas with mouse repulsion and connecting lines
 - **Smooth Scroll Navigation** — active section highlighting on navbar as you scroll
@@ -30,7 +30,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 > No frameworks. No build tools. Pure hand-crafted HTML, CSS, and JavaScript.
 
@@ -47,7 +47,7 @@
 
 ---
 
-## 📁 File Structure
+##  File Structure
 
 ```
 portfolio/
@@ -67,7 +67,7 @@ portfolio/
 
 ---
 
-## 🎨 Color Palette
+##  Color Palette
 
 | Color | Hex | Role |
 |-------|-----|------|
@@ -79,7 +79,7 @@ portfolio/
 
 ---
 
-## 📄 Sections
+##  Sections
 
 | # | Section | What's inside |
 |---|---------|---------------|
@@ -94,7 +94,7 @@ portfolio/
 
 ---
 
-## 🚀 Featured Projects
+##  Featured Projects
 
 | Project | Type | Stack | Repo |
 |---------|------|-------|------|
@@ -107,7 +107,7 @@ portfolio/
 
 ---
 
-## 💻 Run Locally
+##  Run Locally
 
 No installation required — zero dependencies, zero build step.
 
@@ -125,11 +125,11 @@ npx serve .
 # Visit http://localhost:3000
 ```
 
-> ⚠️ **Contact form:** Replace `service_ishcxqo`, `template_k9nyo11`, and the public key in `index.html` with your own [EmailJS](https://www.emailjs.com) credentials.
+>  **Contact form:** Replace `service_ishcxqo`, `template_k9nyo11`, and the public key in `index.html` with your own [EmailJS](https://www.emailjs.com) credentials.
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 Live at **[huma-aslam.site](https://huma-aslam.site)**. To deploy your own copy:
 
@@ -140,7 +140,7 @@ Live at **[huma-aslam.site](https://huma-aslam.site)**. To deploy your own copy:
 
 ---
 
-## 📬 Contact
+##  Contact
 
 | | |
 |-|-|
@@ -151,7 +151,7 @@ Live at **[huma-aslam.site](https://huma-aslam.site)**. To deploy your own copy:
 
 ---
 
-## 📝 License
+##  License
 
 Licensed under the [MIT License](LICENSE).
 Feel free to use this as inspiration — but please don't copy it wholesale and present it as your own work.
