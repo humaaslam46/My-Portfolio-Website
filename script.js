@@ -1,278 +1,604 @@
-/* ============================================================
-   HUMA ASLAM PORTFOLIO — script.js  FINAL
-   ============================================================ */
+/* Huma Aslam — portfolio interactions */
 
-// ── DOM refs ──────────────────────────────────────────────────
-const navbar        = document.getElementById('navbar');
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu    = document.getElementById('mobile-menu');
-const contactForm   = document.getElementById('contact-form');
-const submitBtn     = document.getElementById('submit-btn');
-const formStatus    = document.getElementById('form-status');
+/* ---------------- data ---------------- */
+const SKILLS = [
+  "Python", "React.js", "Scikit-learn", "FastAPI", "Figma",
+  "n8n", "Node.js", "NLP / LLMs", "Pandas",
+];
 
-// ── Section transition overlay (inject once) ──────────────────
-const overlay = document.createElement('div');
-overlay.className = 'ha-page-overlay';
-document.body.appendChild(overlay);
+const CERTS = [
+  ["IT Automation with Python", "Google · 2026"],
+  ["AI Professional", "Google · 2026"],
+  ["Data Analytics", "Google · 2026"],
+  ["AI Essentials", "Google · 2025"],
+  ["UX Design", "Google · 2025"],
+  ["WordPress Master Class", "Alison · 2025"],
+  ["Foundations of Agentic AI in GitHub", "Microsoft Learn · 2025"],
+];
 
-function flashTransition(cb) {
-  overlay.classList.add('flash');
-  setTimeout(() => {
-    cb();
-    setTimeout(() => overlay.classList.remove('flash'), 300);
-  }, 150);
+const SOCIALS = [
+  { icon: "github", label: "GitHub", href: "https://github.com/humaaslam46" },
+  { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/huma-aslam01/" },
+  { icon: "mail", label: "Email", href: "mailto:humaaslam755@gmail.com" },
+  { icon: "globe", label: "Website", href: "https://huma-aslam.site" },
+];
+
+const SERVICES = [
+  {
+    icon: "brain",
+    title: "Applied AI & Machine Learning",
+    desc: "Production-minded ML: classification, NLP pipelines and retrieval-augmented assistants, evaluated properly and served behind clean APIs.",
+    tags: ["NLP & LLMs", "RAG chatbots", "Model evaluation", "FastAPI serving"],
+  },
+  {
+    icon: "layers",
+    title: "Full-Stack Product Engineering",
+    desc: "End-to-end delivery — data model, API layer and interface — built as one coherent system rather than stitched parts.",
+    tags: ["React + Node", "REST APIs", "Auth & data", "Deployment"],
+  },
+  {
+    icon: "code-2",
+    title: "Web Application Development",
+    desc: "Fast, accessible, responsive interfaces engineered for real traffic: component systems, state that scales, and measurable performance.",
+    tags: ["React.js", "TypeScript", "Core Web Vitals", "Responsive UI"],
+  },
+  {
+    icon: "workflow",
+    title: "AI Automation & Workflow Systems",
+    desc: "Removing manual work with orchestrated automations: conditional logic, integrations and monitored executions that run unattended.",
+    tags: ["n8n orchestration", "API integrations", "Gmail / Sheets", "Error handling"],
+  },
+  {
+    icon: "pen-tool",
+    title: "Product Design & UX Systems",
+    desc: "Interface design that survives implementation — flows, prototypes and a design system your engineers can actually build from.",
+    tags: ["Figma prototyping", "Design systems", "User flows", "Brand assets"],
+  },
+  {
+    icon: "line-chart",
+    title: "Data Analytics & Insight Reporting",
+    desc: "Turning raw datasets into decisions: cleaning, exploratory analysis, visualisation and a report that says what to do next.",
+    tags: ["Pandas / NumPy", "EDA", "Dashboards", "Executive summaries"],
+  },
+];
+
+const PROJECTS = [
+  {
+    title: "AI Requirement Classifier",
+    type: "AI / NLP",
+    cat: "ai",
+    desc: "NLP classification system that categorises software requirements (FR, NFR, US, PE) using TF-IDF vectorisation and Multinomial Naive Bayes, deployed as an interactive Streamlit app.",
+    stack: ["Python", "Scikit-learn", "TF-IDF", "Streamlit"],
+    href: "https://github.com/humaaslam46/AI-REQUIREMENT-CLASSIFIER",
+  },
+  {
+    title: "ECG Heartbeat Classification",
+    type: "Deep Learning",
+    cat: "ai",
+    featured: true,
+    desc: "Convolutional deep learning model classifying ECG heartbeat signals into cardiac arrhythmia categories — medical time-series analysis applied to a real healthcare use case.",
+    stack: ["Python", "Deep Learning", "NumPy", "Pandas"],
+    href: "https://github.com/humaaslam46/ECG-Heartbeat-Classification-Deep-Learning",
+  },
+  {
+    title: "Business Nexus",
+    type: "Web App",
+    cat: "web",
+    desc: "Responsive networking platform connecting entrepreneurs, freelancers and investors — business profiles, collaboration feed and opportunity discovery. Deployed on Vercel.",
+    stack: ["React.js", "JavaScript", "CSS3", "Vercel"],
+    href: "https://github.com/humaaslam46/Business-Nexus",
+  },
+  {
+    title: "WeatherSync Dashboard",
+    type: "Web App",
+    cat: "web",
+    desc: "Real-time weather dashboard with location-based forecasts, external API integration and interactive visualisations in a fully responsive UI.",
+    stack: ["HTML / CSS", "JavaScript", "Weather API", "Netlify"],
+    href: "https://github.com/humaaslam46/WeatherSync-Weather-Forecast-App",
+  },
+  {
+    title: "Taskflow",
+    type: "Productivity App",
+    cat: "web",
+    desc: "Task management app with drag-and-drop boards, priority tagging and collaboration features, designed around efficient day-to-day workflows.",
+    stack: ["JavaScript", "HTML / CSS", "Local Storage"],
+    href: "https://github.com/humaaslam46/Taskflow",
+  },
+  {
+    title: "AI Email Automation Agent",
+    type: "AI Automation",
+    cat: "ai",
+    desc: "Automated email workflow in n8n — dynamic recipient management via Google Sheets, conditional logic, custom JavaScript, Gmail integration and execution logging.",
+    stack: ["n8n", "Google Sheets", "Gmail API", "JavaScript"],
+  },
+];
+
+const PLANS = [
+  {
+    icon: "sprout",
+    name: "Starter",
+    desc: "Small web presence or research task",
+    price: 80,
+    popular: false,
+    features: [
+      "Single-page responsive website",
+      "Core UI/UX design in Figma",
+      "Research paper or report (up to 3,000 words)",
+      "APA / IEEE formatted references",
+      "1 revision round",
+    ],
+    excluded: ["No backend / API layer", "No ML or AI models"],
+  },
+  {
+    icon: "rocket",
+    name: "Professional",
+    desc: "Multi-page web app or ML project",
+    price: 200,
+    popular: true,
+    features: [
+      "Multi-page React application",
+      "API integration & backend logic",
+      "Custom ML model + evaluation report",
+      "Complete Figma design system",
+      "3 revision rounds",
+      "1 week post-delivery support",
+    ],
+    excluded: [],
+  },
+  {
+    icon: "layers",
+    name: "Advanced",
+    desc: "Full-stack product or AI automation system",
+    price: 400,
+    popular: false,
+    features: [
+      "Full-stack web application",
+      "Custom ML / AI pipeline",
+      "n8n workflow automation",
+      "AI chatbot integration",
+      "Data analysis & visualisation report",
+      "Unlimited revisions",
+      "2 weeks post-delivery support",
+    ],
+    excluded: [],
+  },
+];
+
+const REVIEWS = [
+  { stars: 5, initials: "FA", name: "Fatima A.", role: "Team Member — Probability & Statistics Project, LGU", text: "Huma led our statistics group project with exceptional organisation. She designed the entire survey structure, distributed tasks clearly, and kept the team on track. The quality of her data analysis was impressive." },
+  { stars: 5, initials: "MK", name: "M. Kovarik", role: "Research Client — Prague University of Economics", text: "The academic writing Huma delivered for my enterprise information security course was thorough, properly cited, and structured exactly as required. She understood complex SIEM concepts and articulated them clearly." },
+  { stars: 5, initials: "SR", name: "S. Raza", role: "Senior Developer — DevelopersHub Corporation", text: "Working with Huma on the React components during our internship was smooth. She writes clean, readable code and communicates blockers early. The UI she built was both functional and visually polished." },
+  { stars: 5, initials: "AH", name: "A. Hassan", role: "Academic Supervisor — Software Engineering Dept., LGU", text: "Her AI Requirement Classifier showed real depth — not just applying algorithms, but understanding the problem space. The documentation and Streamlit deployment were professional-grade." },
+  { stars: 4, initials: "ZN", name: "Z. Noor", role: "Freelance Client — Email Automation Project", text: "The n8n automation workflow Huma built handled edge cases I hadn't even considered. The conditional logic, loops and Gmail integration worked flawlessly from day one. Would hire again." },
+  { stars: 5, initials: "IA", name: "I. Ahmed", role: "Mentor — Elevvo Pathways Internship", text: "Huma is one of those rare developers who cares equally about user experience and technical execution. Business Nexus had a level of design attention that's rare in student projects." },
+];
+
+const CONTACT_ITEMS = [
+  { icon: "mail", label: "Email", value: "humaaslam755@gmail.com", href: "mailto:humaaslam755@gmail.com" },
+  { icon: "message-circle", label: "WhatsApp", value: "+92 320 682 6891", href: "https://wa.me/923206826891" },
+  { icon: "linkedin", label: "LinkedIn", value: "huma-aslam01", href: "https://www.linkedin.com/in/huma-aslam01/" },
+  { icon: "github", label: "GitHub", value: "humaaslam46", href: "https://github.com/humaaslam46" },
+];
+
+const TERMINAL_LINES = [
+  [{ t: "# huma_aslam.py", c: "text-code-com" }],
+  [],
+  [{ t: "class ", c: "text-code-key" }, { t: "HumaAslam", c: "text-code-fn" }, { t: ":" }],
+  [{ t: "    def ", c: "text-code-key" }, { t: "__init__", c: "text-code-fn" }, { t: "(self):" }],
+  [{ t: "        self.name = " }, { t: '"Huma Aslam"', c: "text-code-str" }],
+  [{ t: "        self.role = " }, { t: '"AI / ML Engineer"', c: "text-code-str" }],
+  [{ t: "        self.degree = " }, { t: '"BS Software Eng."', c: "text-code-str" }],
+  [{ t: "        self.stack = [" }, { t: '"Python"', c: "text-code-str" }, { t: ", " }, { t: '"React"', c: "text-code-str" }, { t: ", " }, { t: '"n8n"', c: "text-code-str" }, { t: "]" }],
+  [{ t: "        self.focus = [" }, { t: '"NLP"', c: "text-code-str" }, { t: ", " }, { t: '"LLMs"', c: "text-code-str" }, { t: "]" }],
+  [{ t: "        self.open_to = " }, { t: "True", c: "text-code-key" }, { t: "  # roles", c: "text-code-com" }],
+  [],
+  [{ t: "    def ", c: "text-code-key" }, { t: "say_hi", c: "text-code-fn" }, { t: "(self):" }],
+  [{ t: "        return " }, { t: '"Let\'s build ✦"', c: "text-code-str" }],
+];
+
+const ROLES = [
+  "AI / ML Engineer",
+  "React Developer",
+  "Full-Stack Builder",
+  "UI/UX Designer",
+  "AI Automation Engineer",
+];
+
+/* ---------------- helpers ---------------- */
+const $ = (s, r = document) => r.querySelector(s);
+const el = (html) => {
+  const t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+};
+const icon = (name, cls) => `<i data-lucide="${name}" class="${cls}"></i>`;
+
+/* ---------------- render sections ---------------- */
+function renderAbout() {
+  $("#skills").innerHTML = SKILLS.map(
+    (s) =>
+      `<span class="rounded-full border border-border bg-card px-3.5 py-1.5 font-mono text-[11px] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary">${s}</span>`,
+  ).join("");
+
+  $("#certs").innerHTML = CERTS.map(
+    ([name, meta]) => `
+      <li class="group flex items-start gap-3 border-b border-border/60 pb-3 last:border-0">
+        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-150"></span>
+        <span>
+          <span class="block text-sm transition-colors group-hover:text-primary">${name}</span>
+          <span class="font-mono text-[11px] text-muted-foreground">${meta}</span>
+        </span>
+      </li>`,
+  ).join("");
+
+  $("#socials").innerHTML = SOCIALS.map(
+    (s) => `
+      <a href="${s.href}" target="_blank" rel="noreferrer"
+        class="group inline-flex items-center gap-2.5 rounded-full border border-foreground/20 px-5 py-2.5 text-sm transition-all duration-300 hover:border-foreground hover:bg-foreground hover:text-background">
+        ${icon(s.icon, "h-4 w-4 transition-transform duration-300 group-hover:-rotate-12")}${s.label}
+      </a>`,
+  ).join("");
+
+  const photo = $("#about-photo");
+  const fallback = $("#about-photo-fallback");
+  const fail = () => {
+    photo.classList.add("hidden");
+    fallback.classList.remove("hidden");
+    fallback.classList.add("flex");
+  };
+  photo.addEventListener("error", fail);
+  if (photo.complete && photo.naturalWidth === 0) fail();
 }
 
-// ── Smooth scroll with subtle transition flash ────────────────
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  closeMobileMenu();
-  const cur = getCurrentSection();
-  if (cur !== id) {
-    flashTransition(() => {
-      const y = el.getBoundingClientRect().top + window.scrollY - 66;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    });
-  } else {
-    const y = el.getBoundingClientRect().top + window.scrollY - 66;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
+function renderServices() {
+  $("#services-grid").innerHTML = SERVICES.map(
+    (s, i) => `
+    <div class="reveal" data-delay="${i * 90}">
+      <article class="group relative h-full overflow-hidden rounded-2xl border border-plum-foreground/12 bg-plum-foreground/[0.04] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:bg-plum-foreground/[0.07]">
+        <div class="absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-primary transition-transform duration-500 group-hover:scale-x-100"></div>
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/40 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+          ${icon(s.icon, "h-5 w-5")}
+        </div>
+        <h3 class="mt-6 text-xl text-plum-foreground">${s.title}</h3>
+        <p class="mt-3 text-sm leading-relaxed text-plum-foreground/65">${s.desc}</p>
+        <ul class="mt-6 space-y-2">
+          ${s.tags
+            .map(
+              (t) =>
+                `<li class="flex items-center gap-2.5 font-mono text-[11px] text-plum-foreground/55"><span class="h-px w-4 bg-primary/70"></span>${t}</li>`,
+            )
+            .join("")}
+        </ul>
+        ${icon("arrow-up-right", "mt-7 h-5 w-5 text-primary opacity-0 transition-all duration-500 group-hover:translate-x-1 group-hover:opacity-100")}
+      </article>
+    </div>`,
+  ).join("");
 }
 
-// ── Navbar: scroll shadow + active link ──────────────────────
-const sections = ['home','about','services','projects','pricing','reviews','contact'];
-
-function getCurrentSection() {
-  let cur = 'home';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 130) cur = id;
-  });
-  return cur;
-}
-function updateNavbar() {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-  const cur = getCurrentSection();
-  document.querySelectorAll('.ha-nav-btn').forEach(btn => {
-    const t = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
-    btn.classList.toggle('active', t === cur);
-  });
-}
-window.addEventListener('scroll', updateNavbar, { passive: true });
-updateNavbar();
-
-// ── Mobile menu ───────────────────────────────────────────────
-function closeMobileMenu() {
-  if (!mobileMenu) return;
-  mobileMenu.classList.add('hidden');
-  const icon = mobileMenuBtn?.querySelector('i');
-  if (icon) icon.className = 'fas fa-bars';
-}
-mobileMenuBtn?.addEventListener('click', () => {
-  const hidden = mobileMenu.classList.toggle('hidden');
-  const icon = mobileMenuBtn.querySelector('i');
-  if (icon) icon.className = hidden ? 'fas fa-bars' : 'fas fa-times';
-});
-document.addEventListener('click', e => {
-  if (!navbar.contains(e.target)) closeMobileMenu();
-});
-
-// ── Scroll animations ─────────────────────────────────────────
-const scrollObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); scrollObs.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -44px 0px' });
-document.querySelectorAll('.animate-on-scroll').forEach(el => scrollObs.observe(el));
-
-const cardObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
-      cardObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.ha-service-card,.ha-project-card,.ha-review-card,.ha-price-card').forEach(el => {
-  el.classList.add('animate-on-scroll');
-  cardObs.observe(el);
-});
-
-// ── Hero load animations ──────────────────────────────────────
-window.addEventListener('load', () => {
-  document.querySelectorAll('.animate-on-load').forEach((el, i) => {
-    el.style.transitionDelay = `${i * 160}ms`;
-    setTimeout(() => el.classList.add('loaded'), 60);
-  });
-});
-
-// ── Typewriter ────────────────────────────────────────────────
-const roles = ['AI / ML Engineer','React Developer','UI/UX Designer','Technical Writer','AI Automation Builder'];
-let rIdx = 0, cIdx = 0, deleting = false;
-const tw = document.getElementById('typewriter');
-function type() {
-  if (!tw) return;
-  const word = roles[rIdx];
-  tw.textContent = deleting ? word.substring(0, cIdx--) : word.substring(0, cIdx++);
-  if (!deleting && cIdx === word.length + 1) { deleting = true; setTimeout(type, 1600); return; }
-  if (deleting && cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
-  setTimeout(type, deleting ? 50 : 90);
-}
-type();
-
-// ── Custom cursor ─────────────────────────────────────────────
-const dot     = document.getElementById('cursor-dot');
-const outline = document.getElementById('cursor-outline');
-if (dot && outline) {
-  document.addEventListener('mousemove', e => {
-    dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-    setTimeout(() => { outline.style.left = e.clientX + 'px'; outline.style.top = e.clientY + 'px'; }, 75);
-  });
-  document.querySelectorAll('a,button,.ha-project-card,.ha-service-card,.ha-price-card').forEach(el => {
-    el.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
-  });
+function renderProjects(filter = "all") {
+  const list = PROJECTS.filter((p) => filter === "all" || p.cat === filter);
+  $("#projects-grid").innerHTML = list
+    .map((p, i) => {
+      const tag = p.href ? "a" : "div";
+      const attrs = p.href ? `href="${p.href}" target="_blank" rel="noreferrer"` : "";
+      return `
+      <div class="reveal" data-delay="${i * 80}">
+        <${tag} ${attrs} class="lift group grain-card relative flex h-full flex-col overflow-hidden rounded-2xl p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">${p.type}</span>
+            ${p.featured ? `<span class="rounded-full bg-foreground px-3 py-1 font-mono text-[10px] text-background">Featured</span>` : ""}
+          </div>
+          <h3 class="mt-5 text-xl transition-colors duration-300 group-hover:text-primary">${p.title}</h3>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">${p.desc}</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            ${p.stack
+              .map(
+                (s) =>
+                  `<span class="rounded-md bg-secondary px-2.5 py-1 font-mono text-[10px] text-secondary-foreground">${s}</span>`,
+              )
+              .join("")}
+          </div>
+          <div class="mt-6 flex items-center gap-2 border-t border-border pt-5 font-mono text-xs text-muted-foreground">
+            ${
+              p.href
+                ? `${icon("github", "h-3.5 w-3.5")} View on GitHub ${icon("arrow-up-right", "ml-auto h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1")}`
+                : `${icon("lock", "h-3.5 w-3.5")} Private project`
+            }
+          </div>
+        </${tag}>
+      </div>`;
+    })
+    .join("");
+  lucide.createIcons();
+  observeReveals();
 }
 
-// ── Project filter ────────────────────────────────────────────
-document.querySelectorAll('.ha-filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.ha-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    let n = 0;
-    document.querySelectorAll('.ha-project-card').forEach(card => {
-      const match = filter === 'all' || card.dataset.category === filter;
-      if (match) {
-        card.style.display = '';
-        card.style.opacity = '0'; card.style.transform = 'translateY(18px)';
-        setTimeout(() => {
-          card.style.transition = 'opacity .38s ease, transform .38s ease';
-          card.style.opacity = '1'; card.style.transform = 'translateY(0)';
-        }, n++ * 65);
-      } else { card.style.display = 'none'; }
-    });
-  });
-});
-
-// ── Back to top ───────────────────────────────────────────────
-const backTop = document.getElementById('back-to-top');
-window.addEventListener('scroll', () => {
-  backTop?.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-
-// ── Contact form ──────────────────────────────────────────────
-contactForm?.addEventListener('submit', async e => {
-  e.preventDefault();
-  const fd   = new FormData(contactForm);
-  const name = (fd.get('from_name') || '').trim();
-  const mail = (fd.get('from_email') || '').trim();
-  const msg  = (fd.get('message') || '').trim();
-  if (!name || !mail || !msg) { showStatus('Please fill all required fields.', 'error'); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { showStatus('Please enter a valid email.', 'error'); return; }
-  const orig = submitBtn.innerHTML;
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<span>Sending…</span><i class="fas fa-spinner fa-spin"></i>';
-  hideStatus();
-  try {
-    await emailjs.sendForm('service_ishcxqo','template_k9nyo11', contactForm, 'QE3liNQKctjfoqDa2');
-    showStatus("✓ Sent! I'll get back to you soon.", 'success');
-    contactForm.reset();
-  } catch { showStatus('Something went wrong. Please try again.', 'error'); }
-  finally { submitBtn.disabled = false; submitBtn.innerHTML = orig; setTimeout(hideStatus, 6000); }
-});
-function showStatus(msg, type) {
-  if (!formStatus) return;
-  formStatus.textContent = msg;
-  formStatus.className = 'ha-form-status ' + type;
-  formStatus.classList.remove('hidden');
-}
-function hideStatus() { if (!formStatus) return; formStatus.classList.add('hidden'); }
-
-/* ============================================================
-   HERO PARTICLES — FULL SECTION COVERAGE (your working code)
-   ============================================================ */
-const canvas = document.getElementById('hero-canvas');
-if (canvas) {
-  const ctx = canvas.getContext('2d');
-  let W, H, pts = [];
-
-  function initCanvas() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    pts = [];
-    for (let i = 0; i < 130; i++) {
-      pts.push({
-        x:    Math.random() * W,
-        y:    Math.random() * H,
-        vx:   (Math.random() - 0.5) * 0.4,
-        vy:   (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 1.5 + 0.4,
-        // palette-matched: #4A7FA7 / #B3CFE5
-        alpha: Math.random() * 0.5 + 0.15,
-        col:  Math.random() > 0.5
-                ? `rgba(179,207,229,`   // --sky  #B3CFE5
-                : `rgba(74,127,167,`,   // --blue #4A7FA7
-      });
-    }
-  }
-
-  // Mouse repulsion
-  let mx = -999, my = -999;
-  const heroEl = document.getElementById('home');
-  heroEl?.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-  }, { passive: true });
-  heroEl?.addEventListener('mouseleave', () => { mx = -999; my = -999; });
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, W, H);
-
-    // Connection lines
-    for (let i = 0; i < pts.length; i++) {
-      for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-        const d  = Math.sqrt(dx * dx + dy * dy);
-        if (d < 90) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(74,127,167,${(1 - d / 90) * 0.12})`;
-          ctx.lineWidth   = 0.5;
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.stroke();
+function renderPricing() {
+  $("#pricing-grid").innerHTML = PLANS.map(
+    (p, i) => `
+    <div class="reveal" data-delay="${i * 100}">
+      <div class="group relative h-full rounded-2xl border p-8 transition-all duration-500 hover:-translate-y-2 ${
+        p.popular
+          ? "border-primary bg-plum-foreground/[0.08] shadow-[var(--shadow-lift)] lg:-translate-y-3"
+          : "border-plum-foreground/12 bg-plum-foreground/[0.03] hover:border-primary/50"
+      }">
+        ${
+          p.popular
+            ? `<span class="absolute -top-3 left-8 rounded-full bg-primary px-4 py-1 font-mono text-[10px] tracking-widest text-primary-foreground uppercase">Most Popular</span>`
+            : ""
         }
-      }
-    }
-
-    // Dots
-    pts.forEach(p => {
-      // mouse repel
-      const dx = p.x - mx, dy = p.y - my;
-      const d  = Math.sqrt(dx * dx + dy * dy);
-      if (d < 90 && d > 0) {
-        const f = (90 - d) / 90;
-        p.x += (dx / d) * f * 1.8;
-        p.y += (dy / d) * f * 1.8;
-      }
-
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.col + p.alpha + ')';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(drawParticles);
-  }
-
-  window.addEventListener('resize', initCanvas, { passive: true });
-  initCanvas();
-  drawParticles();
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/40 text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+          ${icon(p.icon, "h-5 w-5")}
+        </div>
+        <h3 class="mt-5 text-2xl text-plum-foreground">${p.name}</h3>
+        <p class="mt-1 text-sm text-plum-foreground/60">${p.desc}</p>
+        <div class="mt-7 flex items-end gap-1 text-plum-foreground">
+          <span class="font-display text-xl text-primary">$</span>
+          <span class="font-display text-5xl leading-none">${p.price}</span>
+          <span class="mb-1 font-mono text-xs text-plum-foreground/50">/ project</span>
+        </div>
+        <ul class="mt-8 space-y-3">
+          ${p.features
+            .map(
+              (f) =>
+                `<li class="flex gap-3 text-sm text-plum-foreground/80">${icon("check", "mt-0.5 h-4 w-4 shrink-0 text-primary")}${f}</li>`,
+            )
+            .join("")}
+          ${p.excluded
+            .map(
+              (f) =>
+                `<li class="flex gap-3 text-sm text-plum-foreground/35">${icon("x", "mt-0.5 h-4 w-4 shrink-0")}${f}</li>`,
+            )
+            .join("")}
+        </ul>
+        <button data-goto="contact" class="mt-9 w-full rounded-full py-3 text-sm transition-all duration-300 ${
+          p.popular
+            ? "bg-primary text-primary-foreground hover:brightness-110"
+            : "border border-plum-foreground/30 text-plum-foreground hover:border-primary hover:text-primary"
+        }">Get Started</button>
+      </div>
+    </div>`,
+  ).join("");
 }
-// Example adjustment for your canvas script
-ctx.strokeStyle = '#4338CA'; // Change particle color to Indigo so it shows on white
-ctx.fillStyle = '#4338CA';
+
+function renderReviews() {
+  $("#reviews-grid").innerHTML = REVIEWS.map(
+    (r, i) => `
+    <div class="reveal" data-delay="${i * 80}">
+      <figure class="lift group grain-card relative h-full rounded-2xl p-7">
+        ${icon("quote", "absolute top-6 right-6 h-8 w-8 text-primary/15 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/30")}
+        <div class="flex gap-1">
+          ${Array.from({ length: 5 })
+            .map((_, s) =>
+              icon("star", `h-3.5 w-3.5 ${s < r.stars ? "fill-primary text-primary" : "text-border"}`),
+            )
+            .join("")}
+        </div>
+        <blockquote class="mt-5 text-sm leading-relaxed text-muted-foreground">&ldquo;${r.text}&rdquo;</blockquote>
+        <figcaption class="mt-7 flex items-center gap-3 border-t border-border pt-5">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-plum font-mono text-xs text-plum-foreground">${r.initials}</span>
+          <span>
+            <span class="block text-sm font-medium">${r.name}</span>
+            <span class="block font-mono text-[11px] text-muted-foreground">${r.role}</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>`,
+  ).join("");
+}
+
+function renderContactItems() {
+  $("#contact-items").innerHTML = CONTACT_ITEMS.map(
+    (c) => `
+    <a href="${c.href}" target="_blank" rel="noreferrer" class="lift grain-card group flex items-center gap-4 rounded-xl p-5">
+      <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-secondary text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+        ${icon(c.icon, "h-4 w-4")}
+      </span>
+      <span>
+        <span class="block font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">${c.label}</span>
+        <span class="block text-sm">${c.value}</span>
+      </span>
+    </a>`,
+  ).join("");
+}
+
+/* ---------------- behaviours ---------------- */
+function scrollToSection(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  window.scrollTo({
+    top: target.getBoundingClientRect().top + window.scrollY - 70,
+    behavior: "smooth",
+  });
+}
+
+function wireNav() {
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-goto]");
+    if (!btn) return;
+    $("#mobile-menu").classList.add("hidden");
+    scrollToSection(btn.dataset.goto);
+  });
+
+  const menuBtn = $("#menu-btn");
+  menuBtn.addEventListener("click", () => {
+    const m = $("#mobile-menu");
+    m.classList.toggle("hidden");
+    menuBtn.innerHTML = m.classList.contains("hidden")
+      ? '<i data-lucide="menu" class="h-5 w-5"></i>'
+      : '<i data-lucide="x" class="h-5 w-5"></i>';
+    lucide.createIcons();
+  });
+
+  const header = $("#header");
+  const ids = ["about", "services", "projects", "pricing", "reviews", "contact"];
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      header.classList.add("border-border", "bg-background/85", "backdrop-blur-xl");
+      header.classList.remove("border-transparent");
+    } else {
+      header.classList.remove("border-border", "bg-background/85", "backdrop-blur-xl");
+      header.classList.add("border-transparent");
+    }
+    let cur = "home";
+    ids.forEach((id) => {
+      const s = document.getElementById(id);
+      if (s && window.scrollY >= s.offsetTop - 140) cur = id;
+    });
+    document.querySelectorAll(".nav-link").forEach((l) => {
+      const on = l.dataset.goto === cur;
+      l.classList.toggle("text-primary", on);
+      l.classList.toggle("text-foreground/80", !on);
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+let revealObserver;
+function observeReveals() {
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            revealObserver.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+    );
+  }
+  document.querySelectorAll(".reveal:not(.is-visible)").forEach((n) => {
+    n.style.transitionDelay = `${n.dataset.delay || 0}ms`;
+    revealObserver.observe(n);
+  });
+}
+
+function typewriter() {
+  const node = $("#typed");
+  let idx = 0;
+  let text = "";
+  let deleting = false;
+  const tick = () => {
+    const word = ROLES[idx];
+    const done = !deleting && text === word;
+    const cleared = deleting && text === "";
+    let delay = done ? 1600 : cleared ? 200 : deleting ? 40 : 75;
+    if (done) deleting = true;
+    else if (cleared) {
+      deleting = false;
+      idx = (idx + 1) % ROLES.length;
+    } else {
+      text = deleting ? word.slice(0, text.length - 1) : word.slice(0, text.length + 1);
+      node.textContent = text;
+    }
+    setTimeout(tick, delay);
+  };
+  tick();
+}
+
+function typeTerminal() {
+  const pre = $("#terminal");
+  let i = 0;
+  const step = () => {
+    if (i >= TERMINAL_LINES.length) return;
+    const line = TERMINAL_LINES[i];
+    const div = document.createElement("div");
+    div.style.animation = "ha-fade-up 0.35s both";
+    div.innerHTML =
+      line.length === 0
+        ? "&nbsp;"
+        : line.map((tok) => `<span class="${tok.c || ""}">${escapeHtml(tok.t)}</span>`).join("");
+    pre.querySelectorAll(".caret").forEach((c) => c.remove());
+    if (i < TERMINAL_LINES.length - 1) {
+      const caret = document.createElement("span");
+      caret.className = "caret ml-0.5 h-3 align-middle";
+      div.appendChild(caret);
+    }
+    pre.appendChild(div);
+    i += 1;
+    setTimeout(step, 120);
+  };
+  setTimeout(step, 500);
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function wireForm() {
+  const form = $("#contact-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const btn = $("#send-btn");
+    btn.disabled = true;
+    $("#send-label").textContent = "Sending…";
+    const subject = encodeURIComponent(data.get("subject") || "Project enquiry");
+    const body = encodeURIComponent(
+      `${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`,
+    );
+    window.location.href = `mailto:humaaslam755@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(() => {
+      btn.disabled = false;
+      $("#send-label").textContent = "Send Message";
+      toast("Opening your mail client…");
+      form.reset();
+    }, 700);
+  });
+}
+
+function toast(msg) {
+  const t = el(`<div class="ha-toast">${msg}</div>`);
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3200);
+}
+
+function wireFilters() {
+  document.querySelectorAll(".filter-btn").forEach((b) => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach((o) => {
+        o.className =
+          "filter-btn rounded-full border border-border px-5 py-2 font-mono text-xs tracking-wide text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground";
+      });
+      b.className =
+        "filter-btn rounded-full bg-foreground px-5 py-2 font-mono text-xs tracking-wide text-background transition-all duration-300";
+      renderProjects(b.dataset.filter);
+    });
+  });
+}
+
+/* ---------------- init ---------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  $("#year").textContent = new Date().getFullYear();
+
+  renderAbout();
+  renderServices();
+  renderProjects("all");
+  renderPricing();
+  renderReviews();
+  renderContactItems();
+
+  lucide.createIcons();
+  wireNav();
+  wireFilters();
+  wireForm();
+  observeReveals();
+
+  // preloader → site
+  setTimeout(() => {
+    const p = $("#preloader");
+    p.classList.add("pointer-events-none", "-translate-y-4", "opacity-0");
+  }, 3000);
+  setTimeout(() => {
+    $("#preloader").remove();
+    const site = $("#site");
+    site.classList.remove("opacity-0");
+    site.classList.add("opacity-100");
+    typewriter();
+    typeTerminal();
+    observeReveals();
+  }, 3700);
+});
