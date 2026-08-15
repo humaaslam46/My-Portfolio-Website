@@ -34,7 +34,7 @@
   --color-code-str: var(--code-str);
   --color-code-fn: var(--code-fn);
   --color-code-com: var(--code-com);
-  --font-display: "Sora", ui-sans-serif, sans-serif;
+  --font-display: "Bricolage Grotesque", "Sora", ui-sans-serif, sans-serif;
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
