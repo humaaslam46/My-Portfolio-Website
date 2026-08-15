@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Sora:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -77,6 +77,7 @@
 
           <div class="hidden items-center gap-8 md:flex" id="navlinks">
             <button data-goto="about" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">About</button>
+            <button data-goto="experience" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Experience</button>
             <button data-goto="services" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Services</button>
             <button data-goto="projects" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Projects</button>
             <button data-goto="pricing" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Pricing</button>
@@ -96,6 +97,7 @@
 
         <div id="mobile-menu" class="hidden border-t border-border bg-background px-6 py-4 md:hidden">
           <button data-goto="about" class="block w-full py-3 text-left text-sm text-foreground/80">About</button>
+          <button data-goto="experience" class="block w-full py-3 text-left text-sm text-foreground/80">Experience</button>
           <button data-goto="services" class="block w-full py-3 text-left text-sm text-foreground/80">Services</button>
           <button data-goto="projects" class="block w-full py-3 text-left text-sm text-foreground/80">Projects</button>
           <button data-goto="pricing" class="block w-full py-3 text-left text-sm text-foreground/80">Pricing</button>
@@ -111,14 +113,14 @@
             class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_20%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent_70%)]"
           ></div>
 
-          <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="mx-auto grid max-w-7xl items-start gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p class="font-mono text-sm text-primary" style="animation: ha-fade-up 0.7s 0.1s both">
                 &gt; const engineer = "Huma Aslam";
               </p>
 
-              <h1 class="mt-6 text-5xl leading-[1.05] md:text-7xl" style="animation: ha-fade-up 0.8s 0.25s both">
-                Crafting AI-powered<br />experiences
+              <h1 class="font-display mt-6 text-5xl leading-[1.03] font-medium tracking-[-0.03em] md:text-[4.4rem]" style="animation: ha-fade-up 0.8s 0.25s both">
+                Engineering <span class="italic text-primary">intelligent</span><br />software, end to end
               </h1>
 
               <div
@@ -173,26 +175,7 @@
               </div>
             </div>
 
-            <div class="relative flex justify-center lg:justify-end">
-              <span
-                class="float-slow absolute z-10 hidden rounded-full border border-border bg-card px-4 py-1.5 font-mono text-xs shadow-[var(--shadow-soft)] lg:block"
-                style="top: 12%; left: 4%; animation-delay: 0s"
-              >
-                <span class="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle"></span>Python
-              </span>
-              <span
-                class="float-slow absolute z-10 hidden rounded-full border border-border bg-card px-4 py-1.5 font-mono text-xs shadow-[var(--shadow-soft)] lg:block"
-                style="top: 52%; left: 0%; animation-delay: 1.2s"
-              >
-                <span class="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle"></span>ML / NLP
-              </span>
-              <span
-                class="float-slow absolute z-10 hidden rounded-full border border-border bg-card px-4 py-1.5 font-mono text-xs shadow-[var(--shadow-soft)] lg:block"
-                style="top: 78%; left: 62%; animation-delay: 2.1s"
-              >
-                <span class="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle"></span>React.js
-              </span>
-
+            <div class="relative flex justify-center lg:justify-end lg:pt-2">
               <!-- code terminal -->
               <div class="relative w-full max-w-[420px]">
                 <span class="line-x absolute top-0 left-0 h-px w-full bg-primary/70" style="animation-delay: 0.1s"></span>
@@ -286,6 +269,36 @@
                   <div class="mt-8 flex flex-wrap gap-3" id="socials"></div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===== Experience ===== -->
+        <section id="experience" class="relative overflow-hidden py-28">
+          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_15%_0%,color-mix(in_oklab,var(--primary)_10%,transparent),transparent_70%)]"></div>
+          <div class="relative mx-auto max-w-7xl px-6">
+            <div class="mx-auto mb-14 max-w-2xl text-center">
+              <div class="reveal">
+                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Experience
+                </span>
+              </div>
+              <div class="reveal" data-delay="80">
+                <h2 class="font-display mt-6 text-4xl leading-[1.1] font-medium tracking-[-0.03em] text-foreground md:text-5xl">Where I&apos;ve shipped</h2>
+              </div>
+              <div class="reveal" data-delay="160">
+                <p class="mt-4 text-base text-muted-foreground">
+                  AI engineering, machine-learning internships, front-end work and brand operations — a track record built while studying.
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-10 flex flex-wrap justify-center gap-2 reveal" id="exp-filters"></div>
+
+            <div class="relative mx-auto max-w-4xl">
+              <span class="absolute top-0 left-[15px] hidden h-full w-px bg-gradient-to-b from-primary/70 via-border to-transparent md:block"></span>
+              <div class="space-y-6" id="experience-list"></div>
             </div>
           </div>
         </section>
@@ -434,7 +447,7 @@
                     <span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" style="animation: ha-ping 1s cubic-bezier(0,0,0.2,1) infinite"></span>
                     <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
                   </span>
-                  AI Engineer + Software Developer + &amp; Applied AI Builder
+                  Available for freelance work &amp; internships
                 </div>
               </div>
 
@@ -475,31 +488,85 @@
       </main>
 
       <!-- ===== Footer ===== -->
-      <footer class="border-t border-plum-foreground/10 bg-plum py-12">
-        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
-          <div>
-            <div class="font-mono text-lg text-plum-foreground">
-              <span class="text-plum-foreground/50">&lt;</span><span class="text-primary">Huma</span><span class="text-plum-foreground/50"> /&gt;</span>
+      <footer class="relative overflow-hidden bg-plum">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_50%_0%,color-mix(in_oklab,var(--primary)_16%,transparent),transparent_70%)]"></div>
+        <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent"></span>
+
+        <div class="relative mx-auto max-w-7xl px-6 pt-24 pb-10">
+          <div class="mx-auto max-w-3xl text-center">
+            <div class="reveal">
+              <span class="inline-flex items-center gap-2 rounded-full border border-plum-foreground/20 px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-plum-foreground/70 uppercase">
+                <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Open for work
+              </span>
             </div>
-            <p class="mt-2 max-w-sm text-sm text-plum-foreground/55">
-              Software engineer and AI builder based in Lahore, Pakistan.
+            <div class="reveal" data-delay="80">
+              <h2 class="font-display mt-6 text-4xl leading-[1.08] font-medium tracking-[-0.03em] text-plum-foreground md:text-6xl">
+                Have something worth<br />building? Let&apos;s make it real.
+              </h2>
+            </div>
+            <div class="reveal" data-delay="150">
+              <p class="mx-auto mt-5 max-w-xl text-base text-plum-foreground/65">
+                Open to internships, freelance collaborations and full-time roles in applied AI and software engineering.
+              </p>
+            </div>
+            <div class="reveal flex flex-wrap justify-center gap-4 pt-8" data-delay="220">
+              <button data-goto="contact"
+                class="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-3.5 text-sm text-primary-foreground transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
+                Say Hello
+                <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+              </button>
+              <a href="mailto:humaaslam755@gmail.com"
+                class="group inline-flex items-center gap-3 rounded-full border border-plum-foreground/30 px-8 py-3.5 text-sm text-plum-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
+                Email Me
+                <i data-lucide="mail" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-20 grid gap-10 border-t border-plum-foreground/10 pt-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+            <div class="reveal">
+              <div class="font-mono text-lg text-plum-foreground">
+                <span class="text-plum-foreground/50">&lt;</span><span class="text-primary">Huma</span><span class="text-plum-foreground/50"> /&gt;</span>
+              </div>
+              <p class="mt-3 max-w-xs text-sm leading-relaxed text-plum-foreground/55">
+                Software engineer and applied-AI builder based in Lahore, Pakistan — shipping intelligent products, automation and clean interfaces.
+              </p>
+              <div class="mt-5 inline-flex items-center gap-2.5 rounded-full border border-plum-foreground/15 px-4 py-2 font-mono text-[11px] tracking-wider text-plum-foreground/60 uppercase">
+                <span class="relative flex h-2 w-2">
+                  <span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" style="animation: ha-ping 1.4s cubic-bezier(0,0,0.2,1) infinite"></span>
+                  <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+                </span>
+                Available now
+              </div>
+            </div>
+
+            <div class="reveal" data-delay="80">
+              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Explore</p>
+              <div class="mt-4 flex flex-col items-start gap-2.5" id="footer-nav-1"></div>
+            </div>
+
+            <div class="reveal" data-delay="140">
+              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">More</p>
+              <div class="mt-4 flex flex-col items-start gap-2.5" id="footer-nav-2"></div>
+            </div>
+
+            <div class="reveal" data-delay="200">
+              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Elsewhere</p>
+              <div class="mt-4 flex flex-wrap gap-3" id="footer-socials"></div>
+              <p class="mt-5 font-mono text-xs text-plum-foreground/50">humaaslam755@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-plum-foreground/10 pt-6 md:flex-row">
+            <p class="font-mono text-[11px] text-plum-foreground/40">
+              © <span id="year"></span> Huma Aslam — designed &amp; built from scratch.
             </p>
+            <p class="font-mono text-[11px] text-plum-foreground/30">Lahore, PK · UTC+5</p>
+            <button id="to-top" aria-label="Back to top"
+              class="group flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
+              <i data-lucide="arrow-up" class="h-4 w-4"></i>
+            </button>
           </div>
-          <div class="flex gap-3">
-            <a href="https://github.com/humaaslam46" target="_blank" rel="noreferrer"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
-              <i data-lucide="github" class="h-4 w-4"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" rel="noreferrer"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
-              <i data-lucide="linkedin" class="h-4 w-4"></i>
-            </a>
-            <a href="mailto:humaaslam755@gmail.com"
-              class="flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
-              <i data-lucide="mail" class="h-4 w-4"></i>
-            </a>
-          </div>
-          <p class="font-mono text-[11px] text-plum-foreground/40">© <span id="year"></span> Huma Aslam</p>
         </div>
       </footer>
     </div>
