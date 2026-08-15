@@ -23,6 +23,115 @@ const SOCIALS = [
   { icon: "globe", label: "Website", href: "https://huma-aslam.site" },
 ];
 
+const EXPERIENCE = [
+  {
+    cat: "ai",
+    icon: "brain-circuit",
+    role: "AI Engineer",
+    org: "Tech About",
+    period: "Jul 2026 — Present",
+    current: true,
+    tags: ["Python", "LLMs", "RAG", "LangChain", "GenAI"],
+    points: [
+      "Develop and integrate AI-powered solutions with Python, LLMs, RAG and LangChain, focused on practical, scalable applications.",
+      "Build AI automation and intelligent workflows, applying modern ML techniques to real business and engineering problems.",
+    ],
+  },
+  {
+    cat: "ai",
+    icon: "workflow",
+    role: "Machine Learning Intern",
+    org: "FlyRank AI",
+    period: "Jun 2026 — Sep 2026",
+    tags: ["Workflow Audit", "Prompt Systems"],
+    points: [
+      "Conducted a structured AI workflow audit using the Ethan Mollick framework to surface high-impact automation opportunities in real work processes.",
+      "Built a custom AI project environment with tailored instructions, turning the audit findings into a reusable prompting system.",
+    ],
+  },
+  {
+    cat: "ai",
+    icon: "bot",
+    role: "Machine Learning Intern",
+    org: "SafeX Solutions",
+    period: "Jun 2026 — Aug 2026",
+    tags: ["Chatbots", "CRM", "Automation"],
+    points: [
+      "Designed and prototyped an AI-powered customer-support chatbot with a hosted demo, conversation-flow diagram and accuracy testing log, modelled on a real service catalog and pricing tiers.",
+      "Independently shipped a WhatsApp auto-reply bot end-to-end, including a CRM integration module for lead capture, de-duplication and status tagging after taking ownership of the full team deliverable.",
+    ],
+  },
+  {
+    cat: "eng",
+    icon: "code-2",
+    role: "Front-End Web Developer Intern",
+    org: "Elevvo Pathways",
+    period: "Aug 2025 — Sep 2025",
+    tags: ["React.js", "Responsive UI"],
+    points: [
+      "Developed responsive, reusable UI components in React.js.",
+      "Collaborated with a remote team on user-centred digital solutions.",
+    ],
+  },
+  {
+    cat: "eng",
+    icon: "layout-dashboard",
+    role: "Frontend Developer",
+    org: "DevelopersHub Corporation",
+    period: "Jul 2025 — Sep 2025",
+    tags: ["Components", "Performance"],
+    points: [
+      "Built reusable web components and improved front-end performance.",
+      "Restructured page architecture for stronger usability and clarity.",
+    ],
+  },
+  {
+    cat: "eng",
+    icon: "rocket",
+    role: "Software Developer & Co-Founder",
+    org: "BetaBytez",
+    period: "2024 — Present",
+    current: true,
+    tags: ["Product", "Full-Stack", "Leadership"],
+    points: [
+      "Lead product and technical direction, building the company's core software as part of running the startup.",
+      "Own day-to-day engineering decisions and delivery as a hands-on developer.",
+    ],
+  },
+  {
+    cat: "brand",
+    icon: "shopping-bag",
+    role: "Social Media Manager",
+    org: "Dermashine",
+    period: "2022 — Present",
+    current: true,
+    tags: ["Meta Business Suite", "Shopify", "Content Strategy"],
+    points: [
+      "Manage end-to-end social presence through Meta Business Suite — planning and publishing content that grows engagement and brand visibility.",
+      "Run Shopify store operations alongside content strategy, keeping a consistent brand voice across the online storefront.",
+    ],
+  },
+  {
+    cat: "brand",
+    icon: "pen-tool",
+    role: "Content Writer (Freelance)",
+    org: "Upwork",
+    period: "2022 — 2024",
+    tags: ["Technical", "Marketing", "Long-form"],
+    points: [
+      "Delivered content-writing projects for international clients across technical, marketing and long-form editorial topics.",
+      "Managed client communication, deadlines and revisions independently across multiple concurrent projects.",
+    ],
+  },
+];
+
+const EXP_FILTERS = [
+  ["all", "All Roles"],
+  ["ai", "AI / ML"],
+  ["eng", "Engineering"],
+  ["brand", "Brand & Content"],
+];
+
 const SERVICES = [
   {
     icon: "brain",
@@ -250,6 +359,90 @@ function renderAbout() {
   if (photo.complete && photo.naturalWidth === 0) fail();
 }
 
+function renderExpFilters(active = "all") {
+  $("#exp-filters").innerHTML = EXP_FILTERS.map(
+    ([id, label]) => `
+      <button data-exp="${id}" class="rounded-full border px-4 py-2 font-mono text-[11px] tracking-wider uppercase transition-all duration-300 ${
+        active === id
+          ? "border-foreground bg-foreground text-background"
+          : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+      }">${label}</button>`,
+  ).join("");
+}
+
+function renderExperience(filter = "all") {
+  const list = filter === "all" ? EXPERIENCE : EXPERIENCE.filter((e) => e.cat === filter);
+  $("#experience-list").innerHTML = list
+    .map(
+      (e, i) => `
+      <article class="reveal group relative md:pl-16" data-delay="${i * 70}">
+        <span class="absolute top-7 left-0 hidden h-8 w-8 items-center justify-center rounded-full border border-border bg-card text-primary shadow-[var(--shadow-soft)] transition-all duration-500 group-hover:scale-110 group-hover:border-primary md:flex">
+          ${icon(e.icon, "h-4 w-4")}
+        </span>
+        <div class="lift grain-card relative overflow-hidden rounded-2xl p-6 md:p-7">
+          <span class="absolute inset-y-0 left-0 w-[2px] origin-top scale-y-0 bg-primary transition-transform duration-500 group-hover:scale-y-100"></span>
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h3 class="font-display text-xl font-medium tracking-tight md:text-2xl">${e.role}</h3>
+              <p class="mt-1 flex items-center gap-2 font-mono text-sm text-primary">
+                ${icon("building-2", "h-3.5 w-3.5")}${e.org}
+              </p>
+            </div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+              ${e.current ? '<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>' : ""}${e.period}
+            </span>
+          </div>
+          <ul class="mt-5 space-y-2.5">
+            ${e.points
+              .map(
+                (p) => `<li class="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary"></span><span>${p}</span>
+                </li>`,
+              )
+              .join("")}
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            ${e.tags
+              .map(
+                (t) => `<span class="rounded-full bg-secondary px-3 py-1 font-mono text-[10px] tracking-wider text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground">${t}</span>`,
+              )
+              .join("")}
+          </div>
+        </div>
+      </article>`,
+    )
+    .join("");
+  lucide.createIcons();
+  observeReveals();
+}
+
+function wireExpFilters() {
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-exp]");
+    if (!btn) return;
+    renderExpFilters(btn.dataset.exp);
+    renderExperience(btn.dataset.exp);
+  });
+}
+
+function renderFooter() {
+  const nav1 = [["home", "Home"], ["about", "About"], ["experience", "Experience"]];
+  const nav2 = [["services", "Services"], ["projects", "Projects"], ["pricing", "Pricing"], ["reviews", "Reviews"]];
+  const link = ([id, label]) =>
+    `<button data-goto="${id}" class="group flex items-center gap-2 text-sm text-plum-foreground/60 transition-colors duration-300 hover:text-primary">
+       <span class="h-px w-0 bg-primary transition-all duration-300 group-hover:w-4"></span>${label}
+     </button>`;
+  $("#footer-nav-1").innerHTML = nav1.map(link).join("");
+  $("#footer-nav-2").innerHTML = nav2.map(link).join("");
+  $("#footer-socials").innerHTML = SOCIALS.map(
+    (s) => `<a href="${s.href}" target="_blank" rel="noreferrer" aria-label="${s.label}"
+      class="flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary/10 hover:text-primary">
+      ${icon(s.icon, "h-4 w-4")}</a>`,
+  ).join("");
+  const top = $("#to-top");
+  if (top) top.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+}
+
 function renderServices() {
   $("#services-grid").innerHTML = SERVICES.map(
     (s, i) => `
@@ -431,7 +624,7 @@ function wireNav() {
   });
 
   const header = $("#header");
-  const ids = ["about", "services", "projects", "pricing", "reviews", "contact"];
+  const ids = ["about", "experience", "services", "projects", "pricing", "reviews", "contact"];
   const onScroll = () => {
     if (window.scrollY > 40) {
       header.classList.add("border-border", "bg-background/85", "backdrop-blur-xl");
@@ -575,6 +768,9 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#year").textContent = new Date().getFullYear();
 
   renderAbout();
+  renderExpFilters("all");
+  renderExperience("all");
+  renderFooter();
   renderServices();
   renderProjects("all");
   renderPricing();
@@ -584,6 +780,7 @@ document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
   wireNav();
   wireFilters();
+  wireExpFilters();
   wireForm();
   observeReveals();
 
