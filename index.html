@@ -17,7 +17,7 @@
       content="Applied AI, full-stack engineering and automation. Projects, services, pricing and contact."
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href="/favicon (1).png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,31 +32,34 @@
       id="preloader"
       class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background opacity-100 transition-all duration-700"
     >
-      <div class="relative">
-        <div
-          class="absolute -inset-10 rounded-full border border-primary/25 [animation:ha-spin-slow_9s_linear_infinite]"
-        ></div>
-        <img
-          src="./assets/cat-mascot.png"
-          alt="Huma Aslam mascot"
-          width="512"
-          height="512"
-          class="float-slow h-28 w-28 object-contain"
-        />
-      </div>
-      <div
-        class="mt-10 flex items-center gap-3 rounded-full border border-border bg-card px-6 py-3 shadow-[var(--shadow-soft)]"
+      <svg
+        class="ha-scribble h-12 w-12"
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        style="color: var(--primary)"
       >
-        <span class="font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase">
-          booting portfolio
+        <path
+          d="M33 6 C15 9 6 24 12 38 C18 52 38 58 48 46 C58 34 50 16 36 16 C24 16 18 28 24 37 C30 46 44 45 47 35 C50 25 40 18 32 24 C26 29 28 39 36 40"
+        />
+      </svg>
+
+      <div class="mt-5 flex items-center gap-2.5">
+        <span class="font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase">
+          loading
         </span>
-        <span class="flex items-end gap-1.5 pb-0.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary" style="animation: ha-dot 1.2s 0s ease-in-out infinite"></span>
-          <span class="h-1.5 w-1.5 rounded-full bg-primary" style="animation: ha-dot 1.2s .18s ease-in-out infinite"></span>
-          <span class="h-1.5 w-1.5 rounded-full bg-primary" style="animation: ha-dot 1.2s .36s ease-in-out infinite"></span>
+        <span class="flex items-end gap-1 pb-0.5">
+          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s 0s ease-in-out infinite"></span>
+          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s .18s ease-in-out infinite"></span>
+          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s .36s ease-in-out infinite"></span>
         </span>
       </div>
-      <div class="mt-8 h-px w-52 overflow-hidden bg-border">
+
+      <div class="mt-5 h-px w-28 overflow-hidden bg-border">
         <div
           class="h-full w-full origin-left bg-primary"
           style="animation: ha-draw-x 3s cubic-bezier(0.4, 0, 0.2, 1) forwards"
@@ -67,42 +70,45 @@
     <div id="site" class="opacity-0 transition-opacity duration-700">
       <!-- ===== Nav ===== -->
       <div class="fixed inset-x-0 top-0 z-50 h-1.5 bg-plum"></div>
-      <header id="header" class="fixed inset-x-0 top-1.5 z-50 border-b border-transparent transition-all duration-500">
-        <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <button data-goto="home" class="group font-mono text-lg tracking-tight">
-            <span class="text-muted-foreground transition-colors group-hover:text-primary">&lt;</span>
-            <span class="text-primary">Huma</span>
-            <span class="text-muted-foreground transition-colors group-hover:text-primary"> /&gt;</span>
-          </button>
+      <header id="header" class="fixed inset-x-0 top-4 z-50 px-4 transition-all duration-500">
+        <div id="nav-shell" class="liquid-nav mx-auto max-w-6xl">
+          <nav class="relative flex h-14 items-center justify-between px-4 md:px-6">
+            <button data-goto="home" class="group font-mono text-base tracking-tight md:text-lg">
+              <span class="text-muted-foreground transition-colors group-hover:text-primary">&lt;</span>
+              <span class="text-primary">Huma</span>
+              <span class="text-muted-foreground transition-colors group-hover:text-primary"> /&gt;</span>
+            </button>
 
-          <div class="hidden items-center gap-8 md:flex" id="navlinks">
-            <button data-goto="about" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">About</button>
-            <button data-goto="experience" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Experience</button>
-            <button data-goto="services" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Services</button>
-            <button data-goto="projects" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Projects</button>
-            <button data-goto="pricing" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Pricing</button>
-            <button data-goto="reviews" class="gold-underline nav-link text-sm text-foreground/80 transition-colors hover:text-foreground">Reviews</button>
+            <div class="hidden items-center gap-1 md:flex" id="navlinks">
+              <button data-goto="about" class="nav-pill nav-link text-sm text-foreground/80">About</button>
+              <button data-goto="experience" class="nav-pill nav-link text-sm text-foreground/80">Experience</button>
+              <button data-goto="services" class="nav-pill nav-link text-sm text-foreground/80">Services</button>
+              <button data-goto="projects" class="nav-pill nav-link text-sm text-foreground/80">Projects</button>
+              <button data-goto="pricing" class="nav-pill nav-link text-sm text-foreground/80">Pricing</button>
+              <button data-goto="reviews" class="nav-pill nav-link text-sm text-foreground/80">Reviews</button>
+            </div>
+
             <button
               data-goto="contact"
-              class="rounded-full border border-foreground px-5 py-2 text-sm transition-all duration-300 hover:bg-foreground hover:text-background"
+              class="hidden items-center gap-2 rounded-full bg-foreground/90 px-5 py-2 text-sm text-background shadow-[0_10px_24px_-14px_var(--foreground)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground md:inline-flex"
             >
               Let&apos;s Talk
             </button>
+
+            <button class="md:hidden" id="menu-btn" aria-label="Menu">
+              <i data-lucide="menu" class="h-5 w-5"></i>
+            </button>
+          </nav>
+
+          <div id="mobile-menu" class="hidden border-t border-border/60 px-5 py-3 md:hidden">
+            <button data-goto="about" class="block w-full py-2.5 text-left text-sm text-foreground/80">About</button>
+            <button data-goto="experience" class="block w-full py-2.5 text-left text-sm text-foreground/80">Experience</button>
+            <button data-goto="services" class="block w-full py-2.5 text-left text-sm text-foreground/80">Services</button>
+            <button data-goto="projects" class="block w-full py-2.5 text-left text-sm text-foreground/80">Projects</button>
+            <button data-goto="pricing" class="block w-full py-2.5 text-left text-sm text-foreground/80">Pricing</button>
+            <button data-goto="reviews" class="block w-full py-2.5 text-left text-sm text-foreground/80">Reviews</button>
+            <button data-goto="contact" class="block w-full py-2.5 text-left text-sm text-foreground/80">Contact</button>
           </div>
-
-          <button class="md:hidden" id="menu-btn" aria-label="Menu">
-            <i data-lucide="menu" class="h-5 w-5"></i>
-          </button>
-        </nav>
-
-        <div id="mobile-menu" class="hidden border-t border-border bg-background px-6 py-4 md:hidden">
-          <button data-goto="about" class="block w-full py-3 text-left text-sm text-foreground/80">About</button>
-          <button data-goto="experience" class="block w-full py-3 text-left text-sm text-foreground/80">Experience</button>
-          <button data-goto="services" class="block w-full py-3 text-left text-sm text-foreground/80">Services</button>
-          <button data-goto="projects" class="block w-full py-3 text-left text-sm text-foreground/80">Projects</button>
-          <button data-goto="pricing" class="block w-full py-3 text-left text-sm text-foreground/80">Pricing</button>
-          <button data-goto="reviews" class="block w-full py-3 text-left text-sm text-foreground/80">Reviews</button>
-          <button data-goto="contact" class="block w-full py-3 text-left text-sm text-foreground/80">Contact</button>
         </div>
       </header>
 
@@ -224,12 +230,12 @@
                   <div class="relative overflow-hidden rounded-2xl border border-border bg-sand shadow-[var(--shadow-soft)]">
                     <img
                       id="about-photo"
-                      src="./images/Huma.jpeg"
+                      src="./images/Huma%20Aslam.jpg"
                       alt="Huma Aslam, software engineer"
                       loading="lazy"
                       class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
                     />
-                    <div id="about-photo-fallback" cass="hidden aspect-[4/5] w-full items-center justify-center bg-plum">
+                    <div id="about-photo-fallback" class="hidden aspect-[4/5] w-full items-center justify-center bg-plum">
                       <span class="font-display text-6xl text-plum-foreground">HA</span>
                     </div>
                   </div>
@@ -492,7 +498,7 @@
         <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_50%_0%,color-mix(in_oklab,var(--primary)_16%,transparent),transparent_70%)]"></div>
         <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent"></span>
 
-        <div class="relative mx-auto max-w-7xl px-6 pt-24 pb-10">
+        <div class="relative mx-auto max-w-7xl px-6 pt-14 pb-8">
           <div class="mx-auto max-w-3xl text-center">
             <div class="reveal">
               <span class="inline-flex items-center gap-2 rounded-full border border-plum-foreground/20 px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-plum-foreground/70 uppercase">
@@ -500,38 +506,38 @@
               </span>
             </div>
             <div class="reveal" data-delay="80">
-              <h2 class="font-display mt-6 text-4xl leading-[1.08] font-medium tracking-[-0.03em] text-plum-foreground md:text-6xl">
+              <h2 class="font-display mt-5 text-3xl leading-[1.08] font-medium tracking-[-0.03em] text-plum-foreground md:text-[2.75rem]">
                 Have something worth<br />building? Let&apos;s make it real.
               </h2>
             </div>
             <div class="reveal" data-delay="150">
-              <p class="mx-auto mt-5 max-w-xl text-base text-plum-foreground/65">
+              <p class="mx-auto mt-4 max-w-xl text-sm text-plum-foreground/65">
                 Open to internships, freelance collaborations and full-time roles in applied AI and software engineering.
               </p>
             </div>
-            <div class="reveal flex flex-wrap justify-center gap-4 pt-8" data-delay="220">
+            <div class="reveal flex flex-wrap justify-center gap-3 pt-6" data-delay="220">
               <button data-goto="contact"
-                class="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-3.5 text-sm text-primary-foreground transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
+                class="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3 text-sm text-primary-foreground transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
                 Say Hello
                 <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
               </button>
               <a href="mailto:humaaslam755@gmail.com"
-                class="group inline-flex items-center gap-3 rounded-full border border-plum-foreground/30 px-8 py-3.5 text-sm text-plum-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
+                class="group inline-flex items-center gap-3 rounded-full border border-plum-foreground/30 px-7 py-3 text-sm text-plum-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
                 Email Me
                 <i data-lucide="mail" class="h-4 w-4"></i>
               </a>
             </div>
           </div>
 
-          <div class="mt-20 grid gap-10 border-t border-plum-foreground/10 pt-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div class="mt-12 grid gap-8 border-t border-plum-foreground/10 pt-8 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
             <div class="reveal">
               <div class="font-mono text-lg text-plum-foreground">
                 <span class="text-plum-foreground/50">&lt;</span><span class="text-primary">Huma</span><span class="text-plum-foreground/50"> /&gt;</span>
               </div>
-              <p class="mt-3 max-w-xs text-sm leading-relaxed text-plum-foreground/55">
+              <p class="mt-2.5 max-w-xs text-[13px] leading-relaxed text-plum-foreground/55">
                 Software engineer and applied-AI builder based in Lahore, Pakistan — shipping intelligent products, automation and clean interfaces.
               </p>
-              <div class="mt-5 inline-flex items-center gap-2.5 rounded-full border border-plum-foreground/15 px-4 py-2 font-mono text-[11px] tracking-wider text-plum-foreground/60 uppercase">
+              <div class="mt-4 inline-flex items-center gap-2.5 rounded-full border border-plum-foreground/15 px-4 py-2 font-mono text-[11px] tracking-wider text-plum-foreground/60 uppercase">
                 <span class="relative flex h-2 w-2">
                   <span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" style="animation: ha-ping 1.4s cubic-bezier(0,0,0.2,1) infinite"></span>
                   <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
@@ -542,22 +548,22 @@
 
             <div class="reveal" data-delay="80">
               <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Explore</p>
-              <div class="mt-4 flex flex-col items-start gap-2.5" id="footer-nav-1"></div>
+              <div class="mt-3 flex flex-col items-start gap-2" id="footer-nav-1"></div>
             </div>
 
             <div class="reveal" data-delay="140">
               <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">More</p>
-              <div class="mt-4 flex flex-col items-start gap-2.5" id="footer-nav-2"></div>
+              <div class="mt-3 flex flex-col items-start gap-2" id="footer-nav-2"></div>
             </div>
 
             <div class="reveal" data-delay="200">
               <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Elsewhere</p>
-              <div class="mt-4 flex flex-wrap gap-3" id="footer-socials"></div>
-              <p class="mt-5 font-mono text-xs text-plum-foreground/50">humaaslam755@gmail.com</p>
+              <div class="mt-3 flex flex-wrap gap-2.5" id="footer-socials"></div>
+              <p class="mt-4 font-mono text-xs text-plum-foreground/50">humaaslam755@gmail.com</p>
             </div>
           </div>
 
-          <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-plum-foreground/10 pt-6 md:flex-row">
+          <div class="mt-8 flex flex-col items-center justify-between gap-3 border-t border-plum-foreground/10 pt-5 md:flex-row">
             <p class="font-mono text-[11px] text-plum-foreground/40">
               © <span id="year"></span> Huma Aslam — designed &amp; built from scratch.
             </p>
