@@ -623,16 +623,10 @@ function wireNav() {
     lucide.createIcons();
   });
 
-  const header = $("#header");
+  const shell = document.getElementById("nav-shell");
   const ids = ["about", "experience", "services", "projects", "pricing", "reviews", "contact"];
   const onScroll = () => {
-    if (window.scrollY > 40) {
-      header.classList.add("border-border", "bg-background/85", "backdrop-blur-xl");
-      header.classList.remove("border-transparent");
-    } else {
-      header.classList.remove("border-border", "bg-background/85", "backdrop-blur-xl");
-      header.classList.add("border-transparent");
-    }
+    if (shell) shell.classList.toggle("is-scrolled", window.scrollY > 40);
     let cur = "home";
     ids.forEach((id) => {
       const s = document.getElementById(id);
@@ -640,6 +634,7 @@ function wireNav() {
     });
     document.querySelectorAll(".nav-link").forEach((l) => {
       const on = l.dataset.goto === cur;
+      l.classList.toggle("is-active", on);
       l.classList.toggle("text-primary", on);
       l.classList.toggle("text-foreground/80", !on);
     });
