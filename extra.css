@@ -239,3 +239,91 @@
   font-size: 0.85rem;
   animation: ha-fade-up 0.4s both;
 }
+
+/* ---------- preloader scribble ---------- */
+@keyframes ha-scribble {
+  0% { stroke-dashoffset: 620; }
+  55% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -620; }
+}
+.ha-scribble path {
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  animation: ha-scribble 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* ---------- liquid glass navbar ---------- */
+.liquid-nav {
+  position: relative;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 55%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--foreground) 5%, transparent) inset,
+    0 18px 50px -24px color-mix(in oklab, var(--foreground) 45%, transparent);
+  transition:
+    background 0.5s ease,
+    box-shadow 0.5s ease,
+    border-color 0.5s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.liquid-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, white 40%, transparent),
+    transparent 38%,
+    transparent 62%,
+    color-mix(in oklab, var(--primary) 14%, transparent)
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+.liquid-nav::after {
+  content: "";
+  position: absolute;
+  inset-inline: 12%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--primary) 70%, transparent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.liquid-nav.is-scrolled {
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 65%, transparent) inset,
+    0 24px 60px -28px color-mix(in oklab, var(--foreground) 55%, transparent);
+}
+.liquid-nav.is-scrolled::after { opacity: 1; }
+
+.nav-pill {
+  position: relative;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  transition:
+    color 0.35s ease,
+    background 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-pill:hover {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+}
+.nav-pill.is-active {
+  background: color-mix(in oklab, var(--primary) 18%, transparent);
+  color: var(--foreground);
+}
