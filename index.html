@@ -1,583 +1,833 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Huma Aslam — AI/ML Engineer & Full-Stack Developer</title>
-    <meta
-      name="description"
-      content="Portfolio of Huma Aslam — software engineer building applied AI systems, RAG chatbots, full-stack React apps and n8n automation."
-    />
-    <meta name="author" content="Huma Aslam" />
-    <link rel="canonical" href="https://huma-aslam.site/" />
-    <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Huma Aslam — AI/ML Engineer & Full-Stack Developer" />
-    <meta
-      property="og:description"
-      content="Applied AI, full-stack engineering and automation. Projects, services, pricing and contact."
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href="./images/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Sora:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <!-- ===== Preloader ===== -->
-    <div
-      id="preloader"
-      class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background opacity-100 transition-all duration-700"
-    >
-      <svg
-        class="ha-scribble h-12 w-12"
-        viewBox="0 0 64 64"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-        style="color: var(--primary)"
-      >
-        <path
-          d="M33 6 C15 9 6 24 12 38 C18 52 38 58 48 46 C58 34 50 16 36 16 C24 16 18 28 24 37 C30 46 44 45 47 35 C50 25 40 18 32 24 C26 29 28 39 36 40"
-        />
-      </svg>
 
-      <div class="mt-5 flex items-center gap-2.5">
-        <span class="font-mono text-[10px] tracking-[0.22em] text-muted-foreground uppercase">
-          loading
-        </span>
-        <span class="flex items-end gap-1 pb-0.5">
-          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s 0s ease-in-out infinite"></span>
-          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s .18s ease-in-out infinite"></span>
-          <span class="h-1 w-1 rounded-full bg-primary" style="animation: ha-dot 1.2s .36s ease-in-out infinite"></span>
-        </span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huma Aslam — AI/ML & Full-Stack Developer</title>
+  <link rel="icon" href="images/Gemini_Generated_Image_7lqe7m7lqe7m7lqe.png" type="image/x-icon">
+
+  <!-- Tailwind CSS (Generated) -->
+  <link href="styles.css" rel="stylesheet">
+
+  <!-- Google Fonts: Instrument Serif + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("QE3liNQKctjfoqDa2");
+    })();
+  </script>
+
+  <!-- Custom Styles -->
+  <link href="extra.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ========= CUSTOM CURSOR ========= -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- ========= NAVBAR ========= -->
+  <nav id="navbar" class="ha-nav">
+    <div class="ha-nav-inner">
+      <div class="ha-logo" onclick="scrollToSection('home')">
+        <span class="ha-logo-text">Huma<span class="ha-logo-accent">.</span></span>
       </div>
 
-      <div class="mt-5 h-px w-28 overflow-hidden bg-border">
-        <div
-          class="h-full w-full origin-left bg-primary"
-          style="animation: ha-draw-x 3s cubic-bezier(0.4, 0, 0.2, 1) forwards"
-        ></div>
+      <div class="ha-nav-links">
+        <button onclick="scrollToSection('home')" class="ha-nav-btn">Home</button>
+        <button onclick="scrollToSection('about')" class="ha-nav-btn">About</button>
+        <button onclick="scrollToSection('services')" class="ha-nav-btn">Services</button>
+        <button onclick="scrollToSection('projects')" class="ha-nav-btn">Projects</button>
+        <button onclick="scrollToSection('pricing')" class="ha-nav-btn">Pricing</button>
+        <button onclick="scrollToSection('reviews')" class="ha-nav-btn">Reviews</button>
+        <button onclick="scrollToSection('contact')" class="ha-nav-cta">Let's Talk</button>
       </div>
+
+      <button id="mobile-menu-btn" class="ha-mobile-btn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
 
-    <div id="site" class="opacity-0 transition-opacity duration-700">
-      <!-- ===== Nav ===== -->
-      <div class="fixed inset-x-0 top-0 z-50 h-1.5 bg-plum"></div>
-      <header id="header" class="fixed inset-x-0 top-4 z-50 px-4 transition-all duration-500">
-        <div id="nav-shell" class="liquid-nav mx-auto max-w-6xl">
-          <nav class="relative flex h-14 items-center justify-between px-4 md:px-6">
-            <button data-goto="home" class="group font-mono text-base tracking-tight md:text-lg">
-              <span class="text-muted-foreground transition-colors group-hover:text-primary">&lt;</span>
-              <span class="text-primary">Huma</span>
-              <span class="text-muted-foreground transition-colors group-hover:text-primary"> /&gt;</span>
-            </button>
+    <div id="mobile-menu" class="ha-mobile-menu hidden">
+      <button onclick="scrollToSection('home')" class="ha-mobile-link">Home</button>
+      <button onclick="scrollToSection('about')" class="ha-mobile-link">About</button>
+      <button onclick="scrollToSection('services')" class="ha-mobile-link">Services</button>
+      <button onclick="scrollToSection('projects')" class="ha-mobile-link">Projects</button>
+      <button onclick="scrollToSection('pricing')" class="ha-mobile-link">Pricing</button>
+      <button onclick="scrollToSection('reviews')" class="ha-mobile-link">Reviews</button>
+      <button onclick="scrollToSection('contact')" class="ha-mobile-link">Contact</button>
+    </div>
+  </nav>
 
-            <div class="hidden items-center gap-1 md:flex" id="navlinks">
-              <button data-goto="about" class="nav-pill nav-link text-sm text-foreground/80">About</button>
-              <button data-goto="experience" class="nav-pill nav-link text-sm text-foreground/80">Experience</button>
-              <button data-goto="services" class="nav-pill nav-link text-sm text-foreground/80">Services</button>
-              <button data-goto="projects" class="nav-pill nav-link text-sm text-foreground/80">Projects</button>
-              <button data-goto="pricing" class="nav-pill nav-link text-sm text-foreground/80">Pricing</button>
-              <button data-goto="reviews" class="nav-pill nav-link text-sm text-foreground/80">Reviews</button>
+  <!-- ========= HERO SECTION ========= -->
+  <section id="home" class="ha-hero">
+
+    <!-- Floating dots canvas — only moving element -->
+    <canvas id="hero-canvas" class="ha-hero-canvas"></canvas>
+
+    <!-- Centered content -->
+    <div class="ha-hero-content ha-hero-centered">
+
+      <p class="ha-title-greeting animate-on-load">Hi, I'm</p>
+
+      <h1 class="ha-title-name animate-on-load">Huma Aslam</h1>
+
+      <div class="ha-title-role animate-on-load">
+        <span class="ha-typewriter" id="typewriter"></span><span class="ha-cursor-blink">|</span>
+      </div>
+
+      <p class="ha-hero-desc animate-on-load">
+        Software Engineering student building intelligent systems —
+        from ML classifiers to full-stack web apps.
+        Turning data into insight, ideas into products.
+      </p>
+
+      <div class="ha-hero-actions animate-on-load">
+        <button onclick="scrollToSection('projects')" class="ha-btn-primary">
+          <span>View My Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        <a href="HUMA_ASLAM_FlowCV_Resume_2026-04-24__1_.pdf" download class="ha-btn-secondary">
+          <i class="fas fa-download"></i>
+          <span>Download Resume</span>
+        </a>
+      </div>
+
+      <div class="ha-hero-stats animate-on-load">
+        <div class="ha-stat">
+          <span class="ha-stat-num">10+</span>
+          <span class="ha-stat-label">Projects</span>
+        </div>
+        <div class="ha-stat-divider"></div>
+        <div class="ha-stat">
+          <span class="ha-stat-num">3+</span>
+          <span class="ha-stat-label">Internships</span>
+        </div>
+        <div class="ha-stat-divider"></div>
+        <div class="ha-stat">
+          <span class="ha-stat-num">2+</span>
+          <span class="ha-stat-label">Years Coding</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ha-scroll-hint" onclick="scrollToSection('about')">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ========= ABOUT SECTION ========= -->
+  <section id="about" class="ha-about">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">About Me</div>
+      <h2 class="ha-section-title animate-on-scroll">The Person Behind the Code</h2>
+
+      <div class="ha-about-grid">
+        <!-- Left: Photo -->
+        <div class="ha-about-photo-wrap animate-on-scroll">
+          <div class="ha-photo-frame">
+            <div class="ha-photo-border"></div>
+            <div class="ha-photo-inner">
+              <img src="images/Huma Aslam.jpg" alt="Huma Aslam" class="ha-photo">
             </div>
-
-            <button
-              data-goto="contact"
-              class="hidden items-center gap-2 rounded-full bg-foreground/90 px-5 py-2 text-sm text-background shadow-[0_10px_24px_-14px_var(--foreground)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground md:inline-flex"
-            >
-              Let&apos;s Talk
-            </button>
-
-            <button class="md:hidden" id="menu-btn" aria-label="Menu">
-              <i data-lucide="menu" class="h-5 w-5"></i>
-            </button>
-          </nav>
-
-          <div id="mobile-menu" class="hidden border-t border-border/60 px-5 py-3 md:hidden">
-            <button data-goto="about" class="block w-full py-2.5 text-left text-sm text-foreground/80">About</button>
-            <button data-goto="experience" class="block w-full py-2.5 text-left text-sm text-foreground/80">Experience</button>
-            <button data-goto="services" class="block w-full py-2.5 text-left text-sm text-foreground/80">Services</button>
-            <button data-goto="projects" class="block w-full py-2.5 text-left text-sm text-foreground/80">Projects</button>
-            <button data-goto="pricing" class="block w-full py-2.5 text-left text-sm text-foreground/80">Pricing</button>
-            <button data-goto="reviews" class="block w-full py-2.5 text-left text-sm text-foreground/80">Reviews</button>
-            <button data-goto="contact" class="block w-full py-2.5 text-left text-sm text-foreground/80">Contact</button>
+          </div>
+          <!-- Skills badges -->
+          <div class="ha-skill-pills">
+            <span class="ha-pill">Python</span>
+            <span class="ha-pill">React.js</span>
+            <span class="ha-pill">Scikit-learn</span>
+            <span class="ha-pill">Figma</span>
+            <span class="ha-pill">n8n</span>
+            <span class="ha-pill">Node.js</span>
+            <span class="ha-pill">TF-IDF / NLP</span>
+            <span class="ha-pill">Pandas</span>
           </div>
         </div>
-      </header>
 
-      <main>
-        <!-- ===== Hero ===== -->
-        <section id="home" class="relative overflow-hidden pt-32 pb-24">
-          <div
-            class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_20%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent_70%)]"
-          ></div>
+        <!-- Right: Text -->
+        <div class="ha-about-text animate-on-scroll">
+          <p class="ha-about-lead">
+            I'm a <strong>Software Engineering student</strong> at Lahore Garrison University (6th semester) 
+            with a passion for AI, ML, and building things that actually work.
+          </p>
+          <p>
+            My journey spans building <strong>NLP-based classifiers</strong>, <strong>React web apps</strong>, 
+            and automating workflows with n8n — alongside academic research writing for international clients. 
+            I believe great technology sits at the intersection of smart engineering and thoughtful design.
+          </p>
+          <p>
+            When I'm not coding, I'm leading my university's statistics research team, deep-diving into 
+            machine learning papers, or crafting technical documentation for global clients.
+          </p>
 
-          <div class="mx-auto grid max-w-7xl items-start gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="ha-about-certs">
+            <div class="ha-cert"><i class="fas fa-certificate"></i> Google UX Design — Coursera (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> AI for Beginners — HP Life (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> WordPress — Alison (2025)</div>
+            <div class="ha-cert"><i class="fas fa-certificate"></i> Graphic Design — NS Training (2024)</div>
+          </div>
+
+          <div class="ha-about-links">
+            <a href="https://github.com/humaaslam46" target="_blank" class="ha-about-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" class="ha-about-link">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="http://humaaslam.site" target="_blank" class="ha-about-link">
+              <i class="fas fa-globe"></i> Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SERVICES SECTION ========= -->
+  <section id="services" class="ha-services">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">What I Do</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Services I Offer</h2>
+      <p class="ha-section-sub animate-on-scroll">From intelligent ML systems to pixel-perfect web apps — here's how I can add value to your project.</p>
+
+      <div class="ha-services-grid">
+
+        <!-- Service 1: AI / ML -->
+        <div class="ha-service-card animate-on-scroll" data-delay="100">
+          <div class="ha-service-icon-wrap ha-icon-ai">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Building intelligent systems: classifiers, predictive models, NLP pipelines, and data-driven solutions using Python, Scikit-learn, Pandas, and NumPy.</p>
+          <ul class="ha-service-tags">
+            <li>Supervised / Unsupervised Learning</li>
+            <li>NLP & Text Classification</li>
+            <li>EDA & Feature Engineering</li>
+            <li>Model Evaluation (F1, ROC-AUC)</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 2: Web Development -->
+        <div class="ha-service-card animate-on-scroll" data-delay="200">
+          <div class="ha-service-icon-wrap ha-icon-web">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Crafting responsive, high-performance web apps using React.js, HTML5, CSS3, JavaScript, and Node.js — from landing pages to full SaaS products.</p>
+          <ul class="ha-service-tags">
+            <li>React.js & JavaScript</li>
+            <li>Node.js & MongoDB</li>
+            <li>REST API Integration</li>
+            <li>Performance Optimization</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 3: UI/UX & Web Design -->
+        <div class="ha-service-card animate-on-scroll" data-delay="300">
+          <div class="ha-service-icon-wrap ha-icon-design">
+            <i class="fas fa-pen-nib"></i>
+          </div>
+          <h3>UI/UX & Web Design</h3>
+          <p>Designing intuitive, visually compelling interfaces in Figma — wireframes, prototypes, and design systems that prioritize user experience at every step.</p>
+          <ul class="ha-service-tags">
+            <li>Figma Prototyping</li>
+            <li>Wireframing & Flows</li>
+            <li>Responsive Design Systems</li>
+            <li>Logo & Brand Graphics</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 4: Technical Writing -->
+        <div class="ha-service-card animate-on-scroll" data-delay="400">
+          <div class="ha-service-icon-wrap ha-icon-writing">
+            <i class="fas fa-pen-fancy"></i>
+          </div>
+          <h3>Technical & Academic Writing</h3>
+          <p>Producing polished research papers, review articles, technical documentation, and academic assignments — with proper APA/IEEE formatting and verified citations.</p>
+          <ul class="ha-service-tags">
+            <li>Research & Review Papers</li>
+            <li>APA / IEEE Formatting</li>
+            <li>Technical Documentation</li>
+            <li>Academic Ghostwriting</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 5: AI Automation -->
+        <div class="ha-service-card animate-on-scroll" data-delay="500">
+          <div class="ha-service-icon-wrap ha-icon-auto">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI Automation & Chatbots</h3>
+          <p>Building smart workflow automation with n8n — AI email agents, chatbots, Google Sheets integration, and conditional logic pipelines that save hours.</p>
+          <ul class="ha-service-tags">
+            <li>n8n Workflow Automation</li>
+            <li>AI Chatbot Development</li>
+            <li>Prompt Engineering</li>
+            <li>Gmail & Sheets Integration</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Service 6: Data & Statistics -->
+        <div class="ha-service-card animate-on-scroll" data-delay="600">
+          <div class="ha-service-icon-wrap ha-icon-data">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3>Data Analysis & Visualization</h3>
+          <p>Transforming raw data into clear insights — statistical modeling, probability distributions, regression analysis, and visual dashboards using Python & Matplotlib.</p>
+          <ul class="ha-service-tags">
+            <li>Statistical Modelling</li>
+            <li>Correlation & Regression</li>
+            <li>Matplotlib Visualizations</li>
+            <li>Survey Data Analysis</li>
+          </ul>
+          <div class="ha-service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PROJECTS SECTION ========= -->
+  <section id="projects" class="ha-projects">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">My Work</div>
+      <h2 class="ha-section-title animate-on-scroll">Featured Projects</h2>
+      <p class="ha-section-sub ha-sub-dark animate-on-scroll">Real projects. Real code. Click any card to view on GitHub.</p>
+
+      <!-- Filter Tabs -->
+      <div class="ha-filter-tabs animate-on-scroll">
+        <button class="ha-filter-btn active" data-filter="all">All</button>
+        <button class="ha-filter-btn" data-filter="ai">AI / ML</button>
+        <button class="ha-filter-btn" data-filter="web">Web Dev</button>
+      </div>
+
+      <div class="ha-projects-grid">
+
+        <!-- Project 1: AI Requirement Classifier -->
+        <a href="https://github.com/humaaslam46/AI-REQUIREMENT-CLASSIFIER" target="_blank" class="ha-project-card animate-on-scroll" data-category="ai" data-delay="100">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-tags"></i></div>
+            <div class="ha-project-type">AI / NLP</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>AI Requirement Classifier</h3>
+            <p>NLP-based classification system that categorizes software requirements (FR, NFR, US, PE, etc.) using TF-IDF vectorization + Multinomial Naive Bayes. Deployed as an interactive Streamlit app.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>Scikit-learn</span><span>TF-IDF</span><span>Streamlit</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 2: Business Nexus -->
+        <a href="https://github.com/humaaslam46/Business-Nexus" target="_blank" class="ha-project-card animate-on-scroll" data-category="web" data-delay="200">
+          <div class="ha-project-header ha-proj-web">
+            <div class="ha-project-icon"><i class="fas fa-network-wired"></i></div>
+            <div class="ha-project-type">Web App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>Business Nexus</h3>
+            <p>A responsive business networking platform connecting entrepreneurs, freelancers, and investors. Built with React.js — includes business profiles, collaboration feed, and opportunity discovery. Deployed on Vercel.</p>
+            <div class="ha-project-stack">
+              <span>React.js</span><span>JavaScript</span><span>CSS3</span><span>Vercel</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 3: WeatherSync -->
+        <a href="https://github.com/humaaslam46/WeatherSync-Weather-Forecast-App" target="_blank" class="ha-project-card animate-on-scroll" data-category="web" data-delay="300">
+          <div class="ha-project-header ha-proj-weather">
+            <div class="ha-project-icon"><i class="fas fa-cloud-sun"></i></div>
+            <div class="ha-project-type">Web App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>WeatherSync Dashboard</h3>
+            <p>Real-time weather dashboard with location-based forecasts, external API integration, and interactive visualizations. Responsive UI deployed on Netlify.</p>
+            <div class="ha-project-stack">
+              <span>HTML / CSS</span><span>JavaScript</span><span>Weather API</span><span>Netlify</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 4: Taskflow -->
+        <a href="https://github.com/humaaslam46/Taskflow" target="_blank" class="ha-project-card animate-on-scroll" data-category="web" data-delay="400">
+          <div class="ha-project-header ha-proj-task">
+            <div class="ha-project-icon"><i class="fas fa-tasks"></i></div>
+            <div class="ha-project-type">Productivity App</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>Taskflow</h3>
+            <p>A clean, intuitive task management app with drag-and-drop boards, priority tags, and team collaboration features — designed for efficient productivity workflows.</p>
+            <div class="ha-project-stack">
+              <span>JavaScript</span><span>HTML / CSS</span><span>Local Storage</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 5: ECG Deep Learning -->
+        <a href="https://github.com/humaaslam46/ECG-Heartbeat-Classification-Deep-Learning" target="_blank" class="ha-project-card ha-project-featured animate-on-scroll" data-category="ai" data-delay="500">
+          <div class="ha-project-header ha-proj-ecg">
+            <div class="ha-project-icon"><i class="fas fa-heartbeat"></i></div>
+            <div class="ha-project-type">Deep Learning</div>
+            <div class="ha-featured-badge">Featured</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>ECG Heartbeat Classification</h3>
+            <p>Deep learning model for classifying ECG heartbeat signals into cardiac arrhythmia categories. Applies convolutional neural networks for medical time-series analysis — a real-world healthcare AI use case.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>Deep Learning</span><span>NumPy</span><span>Pandas</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 7: MindGuard AI -->
+        <a href="https://github.com/humaaslam46/MindGuard-Student-Mental-Health-Prediction-System-" target="_blank" class="ha-project-card animate-on-scroll" data-category="ai" data-delay="700">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-brain"></i></div>
+            <div class="ha-project-type">ML / Healthcare</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>MindGuard AI</h3>
+            <p>Student depression prediction system that identifies mental health risk patterns from survey and behavioural data, enabling early intervention for student wellbeing.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>Streamlit</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 8: BetaBytez Chat Support AI -->
+        <a href="https://github.com/humaaslam46/BetaBytez-chatsupport-ai" target="_blank" class="ha-project-card animate-on-scroll" data-category="ai" data-delay="800">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-comments"></i></div>
+            <div class="ha-project-type">AI Chatbot</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>BetaBytez Chat Support AI</h3>
+            <p>AI-powered customer support chatbot built for BetaBytez, automating conversations, lead capture and response workflows with natural language understanding.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>LLMs</span><span>RAG</span><span>FastAPI</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 9: SafeX RAG Support Chatbot -->
+        <a href="https://github.com/humaaslam46/Safex-Solutions-FAQ-RAG-Chatbot" target="_blank" class="ha-project-card animate-on-scroll" data-category="ai" data-delay="900">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-robot"></i></div>
+            <div class="ha-project-type">RAG Chatbot</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>SafeX RAG Support Chatbot</h3>
+            <p>Retrieval-Augmented Generation chatbot trained on SafeX Solutions' FAQ knowledge base, delivering accurate, context-aware answers for customer support queries.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>LangChain</span><span>RAG</span><span>Vector DB</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+        <!-- Project 10: OutReach AI Agent -->
+        <a href="https://github.com/humaaslam46/OutReach-Agent" target="_blank" class="ha-project-card animate-on-scroll" data-category="ai" data-delay="1000">
+          <div class="ha-project-header ha-proj-ai">
+            <div class="ha-project-icon"><i class="fas fa-paper-plane"></i></div>
+            <div class="ha-project-type">AI Automation</div>
+          </div>
+          <div class="ha-project-body">
+            <h3>OutReach AI Agent</h3>
+            <p>Intelligent outreach agent that automates research, personalisation and communication workflows for scalable business development and audience engagement.</p>
+            <div class="ha-project-stack">
+              <span>Python</span><span>LLMs</span><span>n8n</span><span>Automation</span>
+            </div>
+          </div>
+          <div class="ha-project-footer">
+            <span><i class="fab fa-github"></i> View on GitHub</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PRICING SECTION ========= -->
+  <section id="pricing" class="ha-pricing">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">Rates</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Simple, Transparent Pricing</h2>
+      <p class="ha-section-sub animate-on-scroll">Flat-rate packages for common project types. Custom quotes available for complex work — just reach out.</p>
+
+      <div class="ha-pricing-grid">
+
+        <!-- Starter -->
+        <div class="ha-price-card animate-on-scroll" data-delay="100">
+          <div class="ha-price-top">
+            <div class="ha-price-icon"><i class="fas fa-seedling"></i></div>
+            <h3>Starter</h3>
+            <p class="ha-price-desc">Small web presence or research task</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">80</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Single-page responsive website</li>
+            <li><i class="fas fa-check"></i> Basic UI/UX design in Figma</li>
+            <li><i class="fas fa-check"></i> Research paper or report (up to 3000 words)</li>
+            <li><i class="fas fa-check"></i> APA/IEEE formatted references</li>
+            <li><i class="fas fa-check"></i> 1 revision round</li>
+            <li class="ha-price-no"><i class="fas fa-times"></i> No backend/API</li>
+            <li class="ha-price-no"><i class="fas fa-times"></i> No ML/AI models</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-outline">Get Started</button>
+        </div>
+
+        <!-- Professional (Popular) -->
+        <div class="ha-price-card ha-price-popular animate-on-scroll" data-delay="200">
+          <div class="ha-popular-badge">Most Popular</div>
+          <div class="ha-price-top">
+            <div class="ha-price-icon ha-icon-popular"><i class="fas fa-rocket"></i></div>
+            <h3>Professional</h3>
+            <p class="ha-price-desc">Multi-page web app or ML project</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">200</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Multi-page React.js web app</li>
+            <li><i class="fas fa-check"></i> Full Figma UI/UX prototype</li>
+            <li><i class="fas fa-check"></i> ML model (classification/prediction)</li>
+            <li><i class="fas fa-check"></i> REST API integration</li>
+            <li><i class="fas fa-check"></i> Technical research paper (5000+ words)</li>
+            <li><i class="fas fa-check"></i> 3 revision rounds</li>
+            <li><i class="fas fa-check"></i> Deployment (Vercel / Netlify)</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-solid">Get Started</button>
+        </div>
+
+        <!-- Advanced -->
+        <div class="ha-price-card animate-on-scroll" data-delay="300">
+          <div class="ha-price-top">
+            <div class="ha-price-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>Advanced</h3>
+            <p class="ha-price-desc">Full-stack product or AI automation system</p>
+          </div>
+          <div class="ha-price-amount">
+            <span class="ha-price-currency">$</span>
+            <span class="ha-price-num">400</span>
+            <span class="ha-price-period">/ project</span>
+          </div>
+          <ul class="ha-price-list">
+            <li><i class="fas fa-check"></i> Full-stack web application</li>
+            <li><i class="fas fa-check"></i> Custom ML/AI pipeline</li>
+            <li><i class="fas fa-check"></i> n8n workflow automation</li>
+            <li><i class="fas fa-check"></i> AI chatbot integration</li>
+            <li><i class="fas fa-check"></i> Data analysis & visualization report</li>
+            <li><i class="fas fa-check"></i> Unlimited revisions</li>
+            <li><i class="fas fa-check"></i> 2 weeks post-delivery support</li>
+          </ul>
+          <button onclick="scrollToSection('contact')" class="ha-price-btn ha-price-btn-outline">Get Started</button>
+        </div>
+
+      </div>
+
+      <p class="ha-pricing-note animate-on-scroll">
+        <i class="fas fa-info-circle"></i>
+        All prices are starting rates. Final quote depends on project scope and complexity. Academic writing rates are per-word / per-page.
+        <button onclick="scrollToSection('contact')" class="ha-inline-link">Request a custom quote →</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========= REVIEWS SECTION ========= -->
+  <section id="reviews" class="ha-reviews">
+    <div class="ha-container">
+      <div class="ha-section-label animate-on-scroll">Testimonials</div>
+      <h2 class="ha-section-title animate-on-scroll">What Collaborators Say</h2>
+      <p class="ha-section-sub ha-sub-dark animate-on-scroll">Feedback from teammates, supervisors, and academic collaborators.</p>
+
+      <div class="ha-reviews-grid">
+
+        <div class="ha-review-card animate-on-scroll" data-delay="100">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma led our statistics group project with exceptional organization. She designed the entire survey structure, distributed tasks clearly, and kept the team on track. The quality of her data analysis was impressive."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-1">FA</div>
             <div>
-              <p class="font-mono text-sm text-primary" style="animation: ha-fade-up 0.7s 0.1s both">
-                &gt; const engineer = "Huma Aslam";
-              </p>
-
-              <h1 class="font-display mt-6 text-5xl leading-[1.03] font-medium tracking-[-0.03em] md:text-[4.4rem]" style="animation: ha-fade-up 0.8s 0.25s both">
-                Engineering <span class="italic text-primary">intelligent</span><br />software, end to end
-              </h1>
-
-              <div
-                class="mt-7 inline-flex items-center gap-3 rounded-full bg-foreground px-5 py-2.5"
-                style="animation: ha-fade-up 0.8s 0.4s both"
-              >
-                <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                <span class="font-mono text-sm text-background">
-                  <span id="typed"></span><span class="caret ml-0.5 h-3.5 align-middle"></span>
-                </span>
-              </div>
-
-              <p
-                class="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
-                style="animation: ha-fade-up 0.8s 0.55s both"
-              >
-                Final-year Software Engineering student building applied AI systems end-to-end —
-                including a
-                <span class="text-foreground underline decoration-primary underline-offset-4">retrieval-augmented chatbot</span>
-                deployed via FastAPI. Shipping full-stack web apps and automation on n8n &amp; React.js.
-              </p>
-
-              <div class="mt-9 flex flex-wrap gap-4" style="animation: ha-fade-up 0.8s 0.7s both">
-                <button
-                  data-goto="projects"
-                  class="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm text-background transition-all duration-300 hover:shadow-[var(--shadow-lift)]"
-                >
-                  View My Work
-                  <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-                </button>
-                <button
-                  data-goto="contact"
-                  class="rounded-full border border-foreground px-7 py-3.5 text-sm transition-all duration-300 hover:bg-foreground hover:text-background"
-                >
-                  Let&apos;s Talk
-                </button>
-              </div>
-
-              <div class="mt-12 flex items-center gap-10" style="animation: ha-fade-up 0.8s 0.85s both">
-                <div>
-                  <div class="font-display text-2xl">20+</div>
-                  <div class="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">Projects</div>
-                </div>
-                <div>
-                  <div class="font-display text-2xl">5+</div>
-                  <div class="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">Internships</div>
-                </div>
-                <div>
-                  <div class="font-display text-2xl">2+</div>
-                  <div class="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">Years Coding</div>
-                </div>
-              </div>
+              <strong>Fatima A.</strong>
+              <span>Team Member — Probability & Statistics Project, LGU</span>
             </div>
-
-            <div class="relative flex justify-center lg:justify-end lg:pt-2">
-              <!-- code terminal -->
-              <div class="relative w-full max-w-[420px]">
-                <span class="line-x absolute top-0 left-0 h-px w-full bg-primary/70" style="animation-delay: 0.1s"></span>
-                <span class="line-y absolute top-0 right-0 h-full w-px bg-primary/70" style="animation-delay: 0.5s"></span>
-                <span class="line-x absolute bottom-0 left-0 h-px w-full origin-right bg-primary/70" style="animation-delay: 0.9s"></span>
-                <span class="line-y absolute top-0 left-0 h-full w-px origin-bottom bg-primary/70" style="animation-delay: 1.3s"></span>
-
-                <div
-                  class="scanline relative overflow-hidden rounded-lg bg-terminal shadow-[var(--shadow-lift)] transition-transform duration-500 hover:-translate-y-1"
-                  style="animation: ha-fade-up 0.8s 0.6s both"
-                >
-                  <div class="flex items-center gap-2 border-b border-white/10 px-3 py-2">
-                    <span class="h-2.5 w-2.5 rounded-full bg-[oklch(0.7_0.16_25)]"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-[oklch(0.82_0.14_85)]"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-[oklch(0.75_0.14_150)]"></span>
-                    <span class="ml-auto font-mono text-[10px] text-terminal-foreground/50">huma.py — python</span>
-                  </div>
-                  <pre
-                    id="terminal"
-                    class="min-h-[250px] px-4 py-3 font-mono text-[11px] leading-[1.7] text-terminal-foreground"
-                  ></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== About ===== -->
-        <section id="about" class="relative py-28">
-          <div class="mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>About Me
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-foreground md:text-5xl">The person behind the code</h2>
-              </div>
-            </div>
-
-            <div class="grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
-              <div class="reveal">
-                <div class="relative">
-                  <div class="absolute -top-4 -left-4 h-full w-full rounded-2xl border border-primary/50"></div>
-                  <div class="relative overflow-hidden rounded-2xl border border-border bg-sand shadow-[var(--shadow-soft)]">
-                    <img
-                      id="about-photo"
-                      src="./images/Huma.jpeg"
-                      alt="Huma Aslam, software engineer"
-                      loading="lazy"
-                      class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                    <div id="about-photo-fallback" class="hidden aspect-[4/5] w-full items-center justify-center bg-plum">
-                      <span class="font-display text-6xl text-plum-foreground">HA</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-6 flex flex-wrap gap-2" id="skills"></div>
-              </div>
-
-              <div>
-                <div class="reveal" data-delay="100">
-                  <p class="text-xl leading-relaxed">
-                    I&apos;m a <strong class="font-semibold">Software Engineering student</strong> at Lahore Garrison
-                    University building applied AI systems — from NLP classifiers and retrieval-augmented chatbots to
-                    production-ready React interfaces.
-                  </p>
-                  <p class="mt-5 leading-relaxed text-muted-foreground">
-                    My work sits where machine learning meets real products: training and evaluating models in Python,
-                    serving them through FastAPI, wiring automation flows in n8n, and shipping the front end in React. I
-                    care as much about the interface a person touches as the pipeline behind it.
-                  </p>
-                  <p class="mt-5 leading-relaxed text-muted-foreground">
-                    Outside of build mode I lead my university&apos;s statistics research team, read ML papers, and write
-                    technical documentation for international clients.
-                  </p>
-                </div>
-
-                <div class="reveal" data-delay="200">
-                  <div class="mt-10 rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
-                    <div class="flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                      <i data-lucide="award" class="h-3.5 w-3.5 text-primary"></i> Certifications
-                    </div>
-                    <ul class="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2" id="certs"></ul>
-                  </div>
-                </div>
-
-                <div class="reveal" data-delay="280">
-                  <div class="mt-8 flex flex-wrap gap-3" id="socials"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- ===== Experience ===== -->
-        <section id="experience" class="relative overflow-hidden py-28">
-          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_15%_0%,color-mix(in_oklab,var(--primary)_10%,transparent),transparent_70%)]"></div>
-          <div class="relative mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Experience
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="font-display mt-6 text-4xl leading-[1.1] font-medium tracking-[-0.03em] text-foreground md:text-5xl">Where I&apos;ve shipped</h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-muted-foreground">
-                  AI engineering, machine-learning internships, front-end work and brand operations — a track record built while studying.
-                </p>
-              </div>
-            </div>
-
-            <div class="mb-10 flex flex-wrap justify-center gap-2 reveal" id="exp-filters"></div>
-
-            <div class="relative mx-auto max-w-4xl">
-              <span class="absolute top-0 left-[15px] hidden h-full w-px bg-gradient-to-b from-primary/70 via-border to-transparent md:block"></span>
-              <div class="space-y-6" id="experience-list"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== Services ===== -->
-        <section id="services" class="relative overflow-hidden bg-plum py-28">
-          <div
-            class="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(var(--plum-foreground)_1px,transparent_1px),linear-gradient(90deg,var(--plum-foreground)_1px,transparent_1px)] [background-size:64px_64px]"
-          ></div>
-          <div class="relative mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-plum-foreground/25 px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-plum-foreground/80 uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>What I Do
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-plum-foreground md:text-5xl">
-                  Services built for shipping, not slideware
-                </h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-plum-foreground/70">
-                  Six focused capabilities — each one delivered with the engineering rigour of a production team.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="services-grid"></div>
-          </div>
-        </section>
-
-        <!-- ===== Projects ===== -->
-        <section id="projects" class="py-28">
-          <div class="mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>My Work
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-foreground md:text-5xl">Featured projects</h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-muted-foreground">
-                  Real systems, real code — models trained, interfaces shipped, workflows automated.
-                </p>
-              </div>
-            </div>
-
-            <div class="reveal">
-              <div class="mb-12 flex justify-center gap-2" id="filters">
-                <button data-filter="all" class="filter-btn rounded-full bg-foreground px-5 py-2 font-mono text-xs tracking-wide text-background transition-all duration-300">All</button>
-                <button data-filter="ai" class="filter-btn rounded-full border border-border px-5 py-2 font-mono text-xs tracking-wide text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground">AI / ML</button>
-                <button data-filter="web" class="filter-btn rounded-full border border-border px-5 py-2 font-mono text-xs tracking-wide text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground">Web Dev</button>
-              </div>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="projects-grid"></div>
-          </div>
-        </section>
-
-        <!-- ===== Pricing ===== -->
-        <section id="pricing" class="relative overflow-hidden bg-plum py-28">
-          <div
-            class="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_40%_at_50%_0%,color-mix(in_oklab,var(--primary)_14%,transparent),transparent_70%)]"
-          ></div>
-          <div class="relative mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-plum-foreground/25 px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-plum-foreground/80 uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Rates
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-plum-foreground md:text-5xl">Simple, transparent pricing</h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-plum-foreground/70">
-                  Flat-rate packages for common engagements. Custom scopes are quoted individually.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid items-start gap-6 lg:grid-cols-3" id="pricing-grid"></div>
-
-            <div class="reveal" data-delay="200">
-              <p class="mt-12 flex flex-wrap items-center justify-center gap-2 text-center text-sm text-plum-foreground/55">
-                <i data-lucide="info" class="h-4 w-4 text-primary"></i>
-                All prices are starting rates; the final quote depends on scope and complexity.
-                <button data-goto="contact" class="gold-underline text-primary">Request a custom quote →</button>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== Testimonials ===== -->
-        <section id="reviews" class="py-28">
-          <div class="mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Testimonials
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-foreground md:text-5xl">What collaborators say</h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-muted-foreground">
-                  Feedback from teammates, supervisors and clients across engineering and research work.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="reviews-grid"></div>
-          </div>
-        </section>
-
-        <!-- ===== Contact ===== -->
-        <section id="contact" class="py-28">
-          <div class="mx-auto max-w-7xl px-6">
-            <div class="mx-auto mb-14 max-w-2xl text-center">
-              <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Get In Touch
-                </span>
-              </div>
-              <div class="reveal" data-delay="80">
-                <h2 class="mt-6 text-4xl leading-[1.1] text-foreground md:text-5xl">Let&apos;s build something together</h2>
-              </div>
-              <div class="reveal" data-delay="160">
-                <p class="mt-4 text-base text-muted-foreground">
-                  A web app, an ML model, an automation — or just a question. All welcome.
-                </p>
-              </div>
-            </div>
-
-            <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-              <div class="reveal">
-                <div class="space-y-3" id="contact-items"></div>
-
-                <div class="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-card px-5 py-3 text-sm text-muted-foreground">
-                  <span class="relative flex h-2 w-2">
-                    <span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" style="animation: ha-ping 1s cubic-bezier(0,0,0.2,1) infinite"></span>
-                    <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-                  </span>
-                  Available for freelance work &amp; internships
-                </div>
-              </div>
-
-              <div class="reveal" data-delay="120">
-                <form id="contact-form" class="grain-card space-y-5 rounded-2xl p-8">
-                  <div class="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label class="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">Your Name</label>
-                      <input name="name" type="text" required placeholder="e.g. Ahmed Khan"
-                        class="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm transition-all duration-300 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                    </div>
-                    <div>
-                      <label class="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">Email Address</label>
-                      <input name="email" type="email" required placeholder="your@email.com"
-                        class="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm transition-all duration-300 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                    </div>
-                  </div>
-                  <div>
-                    <label class="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">Subject</label>
-                    <input name="subject" type="text" required placeholder="Project enquiry"
-                      class="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm transition-all duration-300 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                  </div>
-                  <div>
-                    <label class="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">Message</label>
-                    <textarea name="message" rows="5" required placeholder="Tell me about your project…"
-                      class="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm transition-all duration-300 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"></textarea>
-                  </div>
-                  <button type="submit" id="send-btn"
-                    class="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-foreground py-3.5 text-sm text-background transition-all duration-300 hover:shadow-[var(--shadow-lift)] disabled:opacity-60">
-                    <span id="send-label">Send Message</span>
-                    <i data-lucide="send" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- ===== Footer ===== -->
-      <footer class="relative overflow-hidden bg-plum">
-        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_50%_0%,color-mix(in_oklab,var(--primary)_16%,transparent),transparent_70%)]"></div>
-        <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent"></span>
-
-        <div class="relative mx-auto max-w-7xl px-6 pt-14 pb-8">
-          <div class="mx-auto max-w-3xl text-center">
-            <div class="reveal">
-              <span class="inline-flex items-center gap-2 rounded-full border border-plum-foreground/20 px-4 py-1.5 font-mono text-[11px] tracking-[0.2em] text-plum-foreground/70 uppercase">
-                <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Open for work
-              </span>
-            </div>
-            <div class="reveal" data-delay="80">
-              <h2 class="font-display mt-5 text-3xl leading-[1.08] font-medium tracking-[-0.03em] text-plum-foreground md:text-[2.75rem]">
-                Have something worth<br />building? Let&apos;s make it real.
-              </h2>
-            </div>
-            <div class="reveal" data-delay="150">
-              <p class="mx-auto mt-4 max-w-xl text-sm text-plum-foreground/65">
-                Open to internships, freelance collaborations and full-time roles in applied AI and software engineering.
-              </p>
-            </div>
-            <div class="reveal flex flex-wrap justify-center gap-3 pt-6" data-delay="220">
-              <button data-goto="contact"
-                class="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3 text-sm text-primary-foreground transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
-                Say Hello
-                <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
-              </button>
-              <a href="mailto:humaaslam755@gmail.com"
-                class="group inline-flex items-center gap-3 rounded-full border border-plum-foreground/30 px-7 py-3 text-sm text-plum-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
-                Email Me
-                <i data-lucide="mail" class="h-4 w-4"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="mt-12 grid gap-8 border-t border-plum-foreground/10 pt-8 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-            <div class="reveal">
-              <div class="font-mono text-lg text-plum-foreground">
-                <span class="text-plum-foreground/50">&lt;</span><span class="text-primary">Huma</span><span class="text-plum-foreground/50"> /&gt;</span>
-              </div>
-              <p class="mt-2.5 max-w-xs text-[13px] leading-relaxed text-plum-foreground/55">
-                Software engineer and applied-AI builder based in Lahore, Pakistan — shipping intelligent products, automation and clean interfaces.
-              </p>
-              <div class="mt-4 inline-flex items-center gap-2.5 rounded-full border border-plum-foreground/15 px-4 py-2 font-mono text-[11px] tracking-wider text-plum-foreground/60 uppercase">
-                <span class="relative flex h-2 w-2">
-                  <span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" style="animation: ha-ping 1.4s cubic-bezier(0,0,0.2,1) infinite"></span>
-                  <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-                </span>
-                Available now
-              </div>
-            </div>
-
-            <div class="reveal" data-delay="80">
-              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Explore</p>
-              <div class="mt-3 flex flex-col items-start gap-2" id="footer-nav-1"></div>
-            </div>
-
-            <div class="reveal" data-delay="140">
-              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">More</p>
-              <div class="mt-3 flex flex-col items-start gap-2" id="footer-nav-2"></div>
-            </div>
-
-            <div class="reveal" data-delay="200">
-              <p class="font-mono text-[11px] tracking-[0.2em] text-plum-foreground/40 uppercase">Elsewhere</p>
-              <div class="mt-3 flex flex-wrap gap-2.5" id="footer-socials"></div>
-              <p class="mt-4 font-mono text-xs text-plum-foreground/50">humaaslam755@gmail.com</p>
-            </div>
-          </div>
-
-          <div class="mt-8 flex flex-col items-center justify-between gap-3 border-t border-plum-foreground/10 pt-5 md:flex-row">
-            <p class="font-mono text-[11px] text-plum-foreground/40">
-              © <span id="year"></span> Huma Aslam — designed &amp; built from scratch.
-            </p>
-            <p class="font-mono text-[11px] text-plum-foreground/30">Lahore, PK · UTC+5</p>
-            <button id="to-top" aria-label="Back to top"
-              class="group flex h-10 w-10 items-center justify-center rounded-full border border-plum-foreground/20 text-plum-foreground/70 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary">
-              <i data-lucide="arrow-up" class="h-4 w-4"></i>
-            </button>
           </div>
         </div>
-      </footer>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="200">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"The academic writing Huma delivered for my enterprise information security course was thorough, properly cited, and structured exactly as required. She understood complex SIEM concepts and articulated them clearly."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-2">MK</div>
+            <div>
+              <strong>M. Kovarik</strong>
+              <span>Research Writing Client — Prague University of Economics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="300">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Working with Huma on the React components during our internship was smooth. She writes clean, readable code and communicates blockers early. The UI she built was both functional and visually polished."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-3">SR</div>
+            <div>
+              <strong>S. Raza</strong>
+              <span>Senior Developer — DevelopersHub Corporation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="400">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma's AI Requirement Classifier project showed real depth — not just applying algorithms, but understanding the problem space. Her documentation and Streamlit deployment were professional-grade for a student project."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-4">AH</div>
+            <div>
+              <strong>A. Hassan</strong>
+              <span>Academic Supervisor — Software Engineering Dept., LGU</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="500">
+          <div class="ha-review-stars">★★★★☆</div>
+          <p class="ha-review-text">"The n8n automation workflow Huma built handled edge cases I hadn't even considered. The conditional logic, loops, and Gmail integration worked flawlessly from day one. Would hire again."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-5">ZN</div>
+            <div>
+              <strong>Z. Noor</strong>
+              <span>Freelance Client — Email Automation Project</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ha-review-card animate-on-scroll" data-delay="600">
+          <div class="ha-review-stars">★★★★★</div>
+          <p class="ha-review-text">"Huma is one of those rare developers who cares equally about the user experience and the technical execution. The Business Nexus platform she built had a level of design attention that's rare in student projects."</p>
+          <div class="ha-review-author">
+            <div class="ha-author-avatar ha-av-6">IA</div>
+            <div>
+              <strong>I. Ahmed</strong>
+              <span>Mentor — Elevvo Pathways Internship</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= CONTACT SECTION ========= -->
+  <section id="contact" class="ha-contact">
+    <div class="ha-container">
+      <div class="ha-section-label ha-label-light animate-on-scroll">Get In Touch</div>
+      <h2 class="ha-section-title ha-title-light animate-on-scroll">Let's Build Something Together</h2>
+
+      <div class="ha-contact-grid">
+
+        <!-- Left: Info -->
+        <div class="ha-contact-info animate-on-scroll">
+          <p class="ha-contact-tagline">Whether it's a web app, an ML model, a research paper, or just a quick question — I'm open to it.</p>
+
+          <div class="ha-contact-items">
+            <a href="mailto:humaaslam755@gmail.com" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span>Email</span>
+                <strong>humaaslam755@gmail.com</strong>
+              </div>
+            </a>
+            <a href="https://wa.me/+923206826891" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <span>WhatsApp</span>
+                <strong>+92 320 682 6891</strong>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <span>LinkedIn</span>
+                <strong>huma-aslam01</strong>
+              </div>
+            </a>
+            <a href="https://github.com/humaaslam46" target="_blank" class="ha-contact-item">
+              <div class="ha-ci-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <span>GitHub</span>
+                <strong>humaaslam46</strong>
+              </div>
+            </a>
+          </div>
+
+          <div class="ha-contact-availability">
+            <span class="ha-avail-dot"></span>
+            Currently available for freelance work & internship opportunities
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="ha-contact-form-wrap animate-on-scroll">
+          <form id="contact-form" class="ha-contact-form">
+            <div class="ha-form-row">
+              <div class="ha-form-group">
+                <label>Your Name</label>
+                <input type="text" name="from_name" required placeholder="e.g. Ahmed Khan">
+              </div>
+              <div class="ha-form-group">
+                <label>Email Address</label>
+                <input type="email" name="from_email" required placeholder="your@email.com">
+              </div>
+            </div>
+            <div class="ha-form-group">
+              <label>Subject</label>
+              <input type="text" name="subject" required placeholder="e.g. Freelance Web Project">
+            </div>
+            <div class="ha-form-group">
+              <label>Message</label>
+              <textarea name="message" rows="5" required placeholder="Tell me about your project, timeline, and budget..."></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="ha-form-submit">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+            <p id="form-status" class="ha-form-status hidden"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FOOTER ========= -->
+  <footer class="ha-footer">
+    <div class="ha-footer-top">
+      <div class="ha-container">
+        <div class="ha-footer-grid">
+
+          <div class="ha-footer-brand">
+            <div class="ha-footer-logo">Huma<span>.</span></div>
+            <p>Software Engineering student, AI/ML enthusiast, and freelance developer & writer based in Lahore, Pakistan. Building the future one commit at a time.</p>
+            <div class="ha-footer-socials">
+              <a href="https://github.com/humaaslam46" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/huma-aslam01/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/hehehuma.exe" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/+923206826891" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://youtube.com/@soulfuelreminders" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="mailto:humaaslam755@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+
+          <div class="ha-footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><button onclick="scrollToSection('home')">Home</button></li>
+              <li><button onclick="scrollToSection('about')">About</button></li>
+              <li><button onclick="scrollToSection('services')">Services</button></li>
+              <li><button onclick="scrollToSection('projects')">Projects</button></li>
+              <li><button onclick="scrollToSection('pricing')">Pricing</button></li>
+              <li><button onclick="scrollToSection('contact')">Contact</button></li>
+            </ul>
+          </div>
+
+          <div class="ha-footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><span>AI & Machine Learning</span></li>
+              <li><span>Web Development</span></li>
+              <li><span>UI/UX & Web Design</span></li>
+              <li><span>Technical Writing</span></li>
+              <li><span>AI Automation</span></li>
+              <li><span>Data Analysis</span></li>
+            </ul>
+          </div>
+
+          <div class="ha-footer-col">
+            <h4>Currently</h4>
+            <ul>
+              <li><span>📍 Lahore, Pakistan</span></li>
+              <li><span>🎓 BS SE — 6th Semester</span></li>
+              <li><span>💼 Open to freelance</span></li>
+              <li><span>🌐 humaaslam.site</span></li>
+              <li><span>⚡ Lahore Garrison University</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <script src="https://unpkg.com/lucide@0.474.0/dist/umd/lucide.min.js"></script>
-    <script src="./script.js"></script>
-  </body>
+    <div class="ha-footer-bottom">
+      <div class="ha-container">
+        <p>© 2025 Huma Aslam. Designed & built with ♥ in Lahore.</p>
+        <p>Made with HTML, CSS & JavaScript · Powered by EmailJS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="back-to-top" class="ha-back-top" onclick="scrollToSection('home')" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
 </html>
