@@ -173,6 +173,31 @@ const SERVICES = [
 
 const PROJECTS = [
   {
+    title: "MindGuard AI",
+    type: "Healthcare AI",
+    cat: "ai",
+    featured: true,
+    desc: "Machine learning system that predicts student depression risk from survey and lifestyle indicators, built to flag at-risk students early and support timely intervention.",
+    stack: ["Python", "Scikit-learn", "Pandas", "Streamlit"],
+    href: "https://github.com/humaaslam46/MindGuard-Student-Mental-Health-Prediction-System-",
+  },
+  {
+    title: "BetaBytez Chat Support AI",
+    type: "AI / RAG Chatbot",
+    cat: "ai",
+    desc: "AI-powered customer support chatbot prototyped for BetaBytez — built around the company's real service catalog and pricing tiers, with a hosted demo and accuracy testing log.",
+    stack: ["Python", "RAG", "FastAPI"],
+    href: "https://github.com/humaaslam46/BetaBytez-chatsupport-ai",
+  },
+  {
+    title: "SafeX FAQ Copilot",
+    type: "AI / RAG Chatbot",
+    cat: "ai",
+    desc: "Retrieval-augmented FAQ chatbot built during the SafeX Solutions ML internship — grounds answers in real product documentation instead of relying on open-ended generation.",
+    stack: ["Python", "RAG", "FastAPI"],
+    href: "https://github.com/humaaslam46/Safex-Solutions-FAQ-RAG-Chatbot",
+  },
+  {
     title: "AI Requirement Classifier",
     type: "AI / NLP",
     cat: "ai",
